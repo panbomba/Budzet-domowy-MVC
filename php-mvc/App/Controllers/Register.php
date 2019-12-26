@@ -30,11 +30,22 @@ class Register extends \Core\Controller
 		//var_dump($user);
 		if($user->save())
 		{
-			View::renderTemplate('Register/pierwsze_logowanie.html');
+			header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Register/success' , true, 303);
+			exit;
 		}
 		else
 		{
-			var_dump($user->errors);
+			//var_dump($user->errors);
+			View::renderTemplate('Register/rejestracja.html', [
+				'user' => $user
+			]);
+				
 		}
 	}	
+	
+	public function successAction()
+	{
+		View::renderTemplate('Register/pierwsze_logowanie.html');
+	}
+	
 }

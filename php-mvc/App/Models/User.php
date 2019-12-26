@@ -60,6 +60,10 @@ class User extends \Core\Model
 		{
 			$this->errors[] = 'Niepoprawny adres email';
 		}		
+		if ($this->emailExists($this->email))
+		{
+			$this->errors[] = 'Wybrany email jest już zajęty';
+		}				
 		//password
 		if ($this->password != $this->password2)
 		{
@@ -69,6 +73,18 @@ class User extends \Core\Model
 		{
 			$this->errors[] = 'Niepoprawna długość hasła';			
 		}		
+	}
+	protected function emailExists($email)
+	{
+		$sql = 'SELECT * FROM users WHERE email = :email';
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+		
+		$stmt->execute();
+		
+		return $stmt->fetch() !== false;
 	}
 
 }

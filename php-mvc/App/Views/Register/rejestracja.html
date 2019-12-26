@@ -183,9 +183,18 @@
 				<div class="rejestracja">
 					<article>
 						<h1>Rejestracja</h1>
+						
+						{% if user.errors is not empty%}
+						<p>Błędy rejestracji:</p>
+							<ul>
+								{%for error in user.errors%}
+									<li>{{error}}</li>
+								{%endfor%}	
+							</ul>
+						{%endif%}	
 							<form action="/register/create" method="post">
 								Imię <br>
-								<input type="text" name="username">
+								<input type="text" name="username" value="{{user.username}}">
 								<?php
 								
 									if (isset($_SESSION['e_username']))
@@ -197,7 +206,7 @@
 								?>
 								<br><br>
 								e-mail <br>
-								<input type="email" name="email">
+								<input type="email" name="email" value="{{user.email}}">
 								<?php
 								
 									if (isset($_SESSION['e_email']))
