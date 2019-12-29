@@ -30,8 +30,7 @@ class Register extends \Core\Controller
 		//var_dump($user);
 		if($user->save())
 		{
-			header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Register/success' , true, 303);
-			exit;
+			$this->redirect('/register/success');
 		}
 		else
 		{

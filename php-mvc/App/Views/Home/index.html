@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Start!{% endblock %}
 
 {% block body %}
+
+{% if current_user%}
+	Witaj {{ current_user.username }}.
+{% endif %}	
 
 		<main>
 				<div class="logowanie" style="margin-bottom: 30px;">
