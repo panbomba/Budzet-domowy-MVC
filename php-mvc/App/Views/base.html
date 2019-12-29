@@ -9,8 +9,15 @@
 	<meta http-equiv="X-UA-Compatible"  content="IE=edge" />
 	<meta name="author" content="Maciej Bombik" />	
     <title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
+	{% for message in flash_messages %}
+		<div class="alert alert-{{ message.type }}">
+			{{ message.body }}
+		</div>
+	{% endfor %}
+
     {% block body %}
     {% endblock %}
 </body>
