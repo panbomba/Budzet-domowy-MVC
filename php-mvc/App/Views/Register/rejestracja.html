@@ -194,7 +194,7 @@
 						{%endif%}	
 							<form action="/register/create" method="post">
 								Imię <br>
-								<input type="text" name="username" value="{{user.username}}">
+								<input type="text" name="username" value="{{user.username}}" required>
 								<?php
 								
 									if (isset($_SESSION['e_username']))
@@ -206,7 +206,7 @@
 								?>
 								<br><br>
 								e-mail <br>
-								<input type="email" name="email" value="{{user.email}}">
+								<input type="email" name="email" value="{{user.email}}" required>
 								<?php
 								
 									if (isset($_SESSION['e_email']))
@@ -218,7 +218,7 @@
 								?>								
 								<br><br>
 								Hasło <br>
-								<input type="password" name="password">
+								<input type="password" name="password" required>
 								<?php
 								
 									if (isset($_SESSION['e_password']))
