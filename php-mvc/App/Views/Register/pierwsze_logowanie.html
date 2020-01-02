@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign up{% endblock %}
+{% block title %}Moje Fiananse - Logowanie{% endblock %}
 
 {% block body %}
 
-    <h1>Rejestracja</h1>
-
-    <h1>Dziękujemy za rejestrację w serwisie! </h1><br><h4>Możesz się teraz zalogować do swojego profilu.</h4>
-
+		<main>
+			
+				<div class="logowanie">
+					<article>
+						<h1>Dziękujemy za rejestrację w serwisie! </h1><br><h4>Możesz się teraz zalogować do swojego profilu.</h4>
+								<form action="/Login/create" method="post">
+									e-mail <br>
+									<input type="email" name="email" id="inputEmail" value="{{email}}">
+									<br><br>
+									Hasło <br>
+									<input type="password" name="password" id="inputPassword">
+									<br><br>
+									<input type="submit" style="background-color: #5cb85c; color: white" value="Zaloguj się!">
+								<br><br>		
+								<a href="/Home/index"><input type="button" style="color: black" value="Powrót"></a>
+								</form>
+					</article>	
+				</div>
+			
+		</main>
 {% endblock %}

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Moje Finanse - Rejestracja{% endblock %}
 
 {% block body %}
 
+			<section>
+				<div class="rejestracja">
+					<article>
 						<h1>Rejestracja</h1>
 						
 						{% if user.errors is not empty%}
@@ -29,7 +32,10 @@
 								<br><br>								
 								<input type="submit" style="background-color: #5cb85c; color: white" value="Zarejestruj się!">
 								<br><br>		
-								<a href="index.php"><input type="button" style="color: black" value="Powrót"></a>
-							</form>								
+								<a href="/Home/index"><input type="button" style="color: black" value="Powrót"></a>
+							</form>
+					</article>	
+				</div>
+			</section>							
 {% endblock %}
 		

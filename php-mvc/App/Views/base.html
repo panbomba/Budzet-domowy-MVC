@@ -9,8 +9,21 @@
 	<meta http-equiv="X-UA-Compatible"  content="IE=edge" />
 	<meta name="author" content="Maciej Bombik" />	
     <title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
 	<link rel="stylesheet" href="/css/styles.css" />
+	<link rel="stylesheet" href="/css/fontello.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:700,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap&subset=latin-ext" rel="stylesheet">	
+
 </head>
+	<header>
+		<div id="logo-strony">
+			moje finan$e<i class="icon-money"></i>
+				<br>
+			<div id="cytat"><i>Internetowa aplikacja do zarządzania finansami!</i></div>
+		</div>
+	</header>
+	
 <body>
 	{% for message in flash_messages %}
 		<div class="alert alert-{{ message.type }}">
@@ -21,4 +34,9 @@
     {% block body %}
     {% endblock %}
 </body>
+				<footer class="fixed-bottom">
+				<div id="stopka">
+					moje finan$e<i class="icon-money"></i> 2019 &copy; Maciej Bombik  <i class="icon-mail-alt"></i> maciej.bombik.programista@gmail.com
+				</div>
+		</footer>	
 </html>
