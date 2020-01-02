@@ -25,7 +25,7 @@ class Login extends \Core\Controller
 			Auth::login($user);
 			
 			//Flash::addMessage('Udane logowanie.');
-			View::renderTemplate('Main-menu/main-menu.html');
+			View::renderTemplate('Mainmenu/main-menu.html');
 			//$this->redirect(Auth::getReturnToPage());
 		}
 		else

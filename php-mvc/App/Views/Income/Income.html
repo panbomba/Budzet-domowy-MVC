@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Moje Finanse - Przychody{% endblock %}
+
+{% block body %}
+
+{% if current_user%}
+
+{% endif %}	
+
+		<nav class="navbar navbar-expand-md bg-wlasne navbar-dark justify-content-center">
+		  <div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+						<span class="navbar-toggler-icon "></span>
+					</button>
+					
+					<div class="collapse navbar-collapse justify-content-center" id="mainmenu">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="/mainmenu/new"><i class="icon-menu-outline"></i>Start  </a> 
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="/income/new"><i class="icon-money-1"></i>Dodaj Przychód  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/expense/new"><i class="icon-shopping-bag"></i>Dodaj Wydatek  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/balance/new"><i class="icon-chart-line"></i>Bilans  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/settings/new"><i class="icon-cogs"></i>Ustawienia  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"><span style="color: #5cb85c"><i class="icon-user-1"></i>
+								{{ current_user.username }}</span>
+								</a>
+							</li>							
+							<li class="nav-item">
+								<a class="nav-link" href="/login/destroy"><i class="icon-logout"></i>Wyloguj się   </a> 
+							</li>
+						</ul>
+					</div>
+			</div>	
+		</nav>
+
+<h1>Nowy przychod</h1>
+
+{% endblock %}
