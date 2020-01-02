@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Moje Finanse{% endblock %}
+
+{% block body %}
+
+{% if current_user%}
+
+{% endif %}	
+
+		<nav class="navbar navbar-expand-md bg-wlasne navbar-dark justify-content-center">
+		  <div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+						<span class="navbar-toggler-icon "></span>
+					</button>
+					
+					<div class="collapse navbar-collapse justify-content-center" id="mainmenu">
+						<ul class="navbar-nav">
+							<li class="nav-item active">
+								<a class="nav-link" href="main-menu.php"><i class="icon-menu-outline"></i>Start  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="dodaj-przychod.php"><i class="icon-money-1"></i>Dodaj Przychód  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="dodaj-wydatek.php"><i class="icon-shopping-bag"></i>Dodaj Wydatek  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="przegladaj-bilans.php"><i class="icon-chart-line"></i>Bilans  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="ustawienia.php"><i class="icon-cogs"></i>Ustawienia  </a> 
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"><span style="color: #5cb85c"><i class="icon-user-1"></i>
+								{{ current_user.username }}</span>
+								</a>
+							</li>							
+							<li class="nav-item">
+								<a class="nav-link" href="/login/destroy"><i class="icon-logout"></i>Wyloguj się   </a> 
+							</li>
+						</ul>
+					</div>
+			</div>	
+		</nav>
+		
+		<main>
+			<section>
+				<div class="artykul-main">
+					<article>
+						<h4>
+							Witaj {{ current_user.username }}!
+						</h4>
+							<p style="text-align:center"> 
+							Cieszymy się, że spotykamy Cię w serwisie <b>moje finan$e</b>! <br>Mamy nadzieję, że twoje doświadczenie będzie pozytywne i korzystnie wpłynie na Twoją sytuację finansową.
+							</p>
+							Zachęcamy do samodzielnego rozwijania aplikacji. Możesz ją personalizować według własnego uznania i potrzeb. <br>Dodawaj własne kategorie wydatków i przychodów, które najlepiej odzwierciedlają Twoją sytuację!
+							</p>
+					</article>	
+				</div>
+			</section>
+		</main>
+		
+{% endblock %}		

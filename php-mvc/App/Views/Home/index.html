@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Start!{% endblock %}
+{% block title %}Moje Finanse - Start!{% endblock %}
 
 {% block body %}
 
 {% if current_user%}
-	Witaj {{ current_user.username }}.
+	<!--Witaj {{ current_user.username }}. -->
 {% endif %}	
 
 		<main>
@@ -17,12 +17,6 @@
 									<br>
 									<a href="/register/new"><input type="button" style="background-color: #FF8800; color: white" value="Rejestracja"></a>
 					</article>
-						<?php
-							if(isset($_SESSION['blad']))
-							{
-								echo $_SESSION['blad'];
-							}	
-						?>
 				</div>	
 				
 				<div class="artykul-main">
@@ -48,4 +42,5 @@ Czasami wystarczy spojrzenie na zestawienie swoich przychodów i wydatków w dan
 					</article>
 				</div>				
 		</main>
+
 {% endblock %}
