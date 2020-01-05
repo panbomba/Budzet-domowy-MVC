@@ -49,7 +49,7 @@
 				<div class="przychod">
 
 						<h1>Dodaj przychód</h1>
-								<form action="przychod.php" method="post">
+								<form action="/Income/create" method="post">
 									<label> Kwota    <input type="number" step="0.01" name="kwota"></label>
 										<br><br>
 									<label>Data     <input type="date" name="data_przychodu" value="YYYY-MM-DD"></label>
@@ -62,8 +62,8 @@
 											<div><label><input type="radio" value="inne" name="przychod"> Inne</label></div>
 									</fieldset>
 									<br>
-									<div><label for="komentarz">Dodatkowe komentarze</label></div>
-										<textarea name="komentarz" id="komentarz" rows="4" cols="50"> </textarea>
+									<div><label for="koment">Dodatkowe komentarze</label></div>
+										<textarea name="koment" rows="4" cols="50"></textarea>
 								<br><br>
 								<input type="submit" style="background-color: #5cb85c; color: white" value="Dodaj przychod">
 								<br><br>
