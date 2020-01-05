@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\User;
-use \App\Models\Income;
-use \App\Models\Expense;
+use \App\Models\IncomeTransaction;
+use \App\Models\ExpenseTransaction;
 use \App\Models\Payment;
 
 /**
@@ -36,8 +36,8 @@ class Register extends \Core\Controller
 			$user_array = ($user->findByEmail($user->email));
 			$id_just_registered_user = (int)($user_array->id);
 
-			Income::saveDefaultIncomes($id_just_registered_user);
-			Expense::saveDefaultExpenses($id_just_registered_user);
+			IncomeTransaction::saveDefaultIncomes($id_just_registered_user);
+			ExpenseTransaction::saveDefaultExpenses($id_just_registered_user);
 			Payment::saveDefaultPayments($id_just_registered_user);
 			
 			$this->redirect('/register/success');
