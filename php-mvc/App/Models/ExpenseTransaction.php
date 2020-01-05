@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use \Core\View;
+use \App\Flash;
 
 use PDO;
 
@@ -23,7 +25,7 @@ class ExpenseTransaction extends \Core\Model
 	public static function saveNewExpense()
 	{
 		$kwota = (double)$_POST['kwota']; //sprawdzic czy bedzie poprawnie sumowac
-		$data_wydatku = $_POST['data_wydatku']; 
+		$data_wydatku = date($_POST['data_wydatku']); 
 		$komentarz = $_POST['komentarz']; 
 		$user_id = $_SESSION['user_id'];	 //
 		$tablica2 = static::getExpenseId();
@@ -37,7 +39,12 @@ class ExpenseTransaction extends \Core\Model
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
 		
+		Flash::addMessage('Transakcja dodana pomyślnie.');		
+		View::renderTemplate('Expense/expense.html');
+
+		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
 		return $stmt->execute();		
+			
 	}
 
 	public static function getExpenseId()

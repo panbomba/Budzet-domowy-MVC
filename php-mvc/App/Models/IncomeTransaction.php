@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use \Core\View;
+use \App\Flash;
 
 use PDO;
 
@@ -25,7 +27,7 @@ class IncomeTransaction extends \Core\Model
 	{
 		$user_id = $_SESSION['user_id'];
 		$kwota = (double)$_POST['kwota']; //spradzic czy bedzie poprawnie sumowac
-		$data_przychodu = strtotime($_POST['data_przychodu']); 
+		$data_przychodu = date($_POST['data_przychodu']); 
 		$komentarz = $_POST['koment'];
 		$tablica = static::getIncomeId();
 		$income_category_assigned_to_user_id = (int)$tablica['id'];
@@ -35,8 +37,12 @@ class IncomeTransaction extends \Core\Model
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
+		Flash::addMessage('Transakcja dodana pomyślnie.');		
+		View::renderTemplate('Income/income.html');
+
+		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
 		
-		return $stmt->execute();		
+		return $stmt->execute();			
 	}
 	
 	public static function getIncomeId()
