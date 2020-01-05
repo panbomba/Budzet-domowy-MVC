@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\User;
+use \App\Models\Income;
+use \App\Models\Expense;
+use \App\Models\Payment;
 
 /**
  * Home controller
@@ -30,6 +33,13 @@ class Register extends \Core\Controller
 		//var_dump($user);
 		if($user->save())
 		{
+			$user_array = ($user->findByEmail($user->email));
+			$id_just_registered_user = (int)($user_array->id);
+
+			Income::saveDefaultIncomes($id_just_registered_user);
+			Expense::saveDefaultExpenses($id_just_registered_user);
+			Payment::saveDefaultPayments($id_just_registered_user);
+			
 			$this->redirect('/register/success');
 		}
 		else
