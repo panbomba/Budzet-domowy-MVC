@@ -26,11 +26,12 @@ class IncomeTransaction extends \Core\Model
 		$user_id = $_SESSION['user_id'];
 		$kwota = (double)$_POST['kwota']; //spradzic czy bedzie poprawnie sumowac
 		$data_przychodu = strtotime($_POST['data_przychodu']); 
-		$komentarz = $_POST['koment']; //do poprawy
-		$income_category_assigned_to_user_id = 1; //do poprawy
-	
+		$komentarz = $_POST['koment'];
+		$tablica = static::getIncomeId();
+		$income_category_assigned_to_user_id = (int)$tablica['id'];
+
 		$sql = "INSERT INTO incomes (user_id, income_category_assigned_to_user_id, amount, date_of_income, income_comment)
-		VALUES ($user_id, $income_category_assigned_to_user_id, $kwota, $data_przychodu, 'komentarz')";
+		VALUES ('$user_id', '$income_category_assigned_to_user_id', '$kwota', '$data_przychodu', '$komentarz')";
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
@@ -38,4 +39,17 @@ class IncomeTransaction extends \Core\Model
 		return $stmt->execute();		
 	}
 	
+	public static function getIncomeId()
+	{
+		$user_id = $_SESSION['user_id'];
+		$kategoria_przychodu = $_POST['przychod'];
+
+		$sql = "SELECT * FROM incomes_category_assigned_to_users WHERE name='$kategoria_przychodu' AND user_id='$user_id'";
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		$stmt->execute();		
+		return $stmt->fetch();	
+	}
+
 }
