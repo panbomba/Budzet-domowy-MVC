@@ -43,6 +43,94 @@
 			</div>	
 		</nav>
 
-<h1>Przegladaj bilans</h1>
+		<main>
+			<section class="artykul-main-bilans">
+				<div class="container">
+					<h1>Przegladaj bilans</h1><br>
+
+						<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Wybierz okres
+								</button>
+							 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							 <form action="/Balance/create" method="post">
+								<button class="dropdown-item" type="submit" name="okres" value="1">Bieżący miesiąc</button>
+								<button class="dropdown-item" type="submit" name="okres" value="2">Poprzedni miesiąc</button>
+								<button class="dropdown-item" type="submit" name="okres" value="3">Bieżący rok</button>
+								<button class="dropdown-item btn btn-primary" type="button" name="okres" data-toggle="modal" data-target="#modal-daty">Okres niestandardowy</button>
+								</form>
+							 </div>
+						</div>
+
+<!-- Modal -->
+						<div class="modal fade" id="modal-daty" tabindex="-1" role="dialog" aria-labelledby="modal-daty" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Wybierz daty</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Balance/create" method="post">
+								  <div class="modal-body">
+										<label>Data początkowa <input type="date" name="start"  value="YYYY-MM-DD"></label>
+										<label>Data końcowa <input type="date" name="end"  value="YYYY-MM-DD"></label>
+								  </div>								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+									<button type="submit" value="4" name="okres" class="btn btn-success">Wybierz</button>
+									</form>
+								</div>
+								</div>
+							 </div>
+						</div>
+						
+			<div>	<br>	
+				<div class="row">			
+					
+					<div class="col-md-6">
+						<div class = "tile1">
+						<h4><b>Przychody</b></h4>
+							<p>
+							Od: {{ start_date }}
+								<br>Do: {{ end_date }}
+								<br><br>przychody_kategorie
+								<br>Suma Przychodów: {{ sum_of_incomes }}						
+							</p>
+							
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class = "tile1">
+						<h4><b>Wydatki</b></h4> 
+							<p>
+								Od: {{ start_date }}
+								<br>Do: {{ end_date }}
+								<br><br>przychody_kategorie
+								<br>Suma wydatków: {{ sum_of_expenses }}							
+							</p>
+								PIE CHART				
+						</div>
+					</div>
+						
+					<div class="col-sm-12">
+						<div class = "tile2">
+						<h4><b>Podsumowanie</b></h4>
+							<p>
+								Bilans: {{ bilans }}
+								{% if bilans > 0 %}
+								<p><b><span style="color: #5cb85c">Gratulacje. Świetnie zarządzasz finansami!</span></b></p>
+								{% else %}
+								<p><b><span style="color: red">Uważaj, wpadasz w długi!</span></b></p>
+								{% endif %}
+							</p>
+						</div>
+					</div>
+				</div>	
+			</div>	
+				</div>
+			</section>
+		</main>
 
 {% endblock %}
