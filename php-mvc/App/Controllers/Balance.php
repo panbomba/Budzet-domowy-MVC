@@ -12,6 +12,17 @@ class Balance extends \Core\Controller
 {
 	public function newAction()
 	{
+		$_SESSION['data_poczatkowa'] = date("Y-m-d", strtotime("first day of this month"));
+		$_SESSION['data_koncowa'] = date("Y-m-d", strtotime("today"));
+
+		$tablica4 = BalanceModel::getSumOfExpenses($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+		$tablica5 = BalanceModel::getSumOfIncomes($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+		$_SESSION['suma_wydatkow'] = -(double)$tablica4['SUM(amount)'];
+		$_SESSION['suma_przychodow'] = (double)$tablica5['SUM(amount)'];
+		$_SESSION['bilans'] = ($_SESSION['suma_przychodow'] + $_SESSION['suma_wydatkow']); 
+		static::showSumOfExpenses();
+		static::showSumOfIncomes();
+		
 		View::renderTemplate('Balance/balance.html');
 	}		
 	
@@ -73,12 +84,7 @@ class Balance extends \Core\Controller
 			if(isset($_SESSION['data_poczatkowa']))
 			{
 				return $_SESSION['data_poczatkowa'];
-			}
-			else 
-			{
-				$_SESSION['data_poczatkowa'] = date("Y-m-d", strtotime("today"));
-				return $_SESSION['data_poczatkowa'];
-			}				
+			}		
 		}
 		public static function getEndDate()
 		{
@@ -87,22 +93,12 @@ class Balance extends \Core\Controller
 				return $_SESSION['data_koncowa'];
 			}
 			else 
-			{
-				$_SESSION['data_koncowa'] = date("Y-m-d", strtotime("first day of this month"));
-				return $_SESSION['data_koncowa'];
-			}		
 		}
 		public static function showSumOfExpenses()		
 		{
 			if(isset($_SESSION['suma_wydatkow']))
 			{
 				return $_SESSION['suma_wydatkow'];
-			}
-			else
-			{
-			$_SESSION['user_id'];	
-			$tablica5 = BalanceModel::getSumOfExpenses($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
-			$_SESSION['suma_wydatkow'] = -(double)$tablica5['SUM(amount)'];		
 			}
 		}
 		public static function showSumOfIncomes()		
@@ -111,12 +107,6 @@ class Balance extends \Core\Controller
 			{
 				return $_SESSION['suma_przychodow'];
 			}			
-			else
-			{
-				$_SESSION['user_id'];
-				$tablica6 = BalanceModel::getSumOfIncomes($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);	
-				$_SESSION['suma_przychodow'] = (double)$tablica6['SUM(amount)'];			
-			}
 		}	
 		public static function getBalance()
 		{
