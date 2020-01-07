@@ -56,22 +56,19 @@ class Balance extends \Core\Controller
 		$_SESSION['suma_wydatkow'] = -(double)$tablica4['SUM(amount)'];
 		$_SESSION['suma_przychodow'] = (double)$tablica5['SUM(amount)'];
 		$_SESSION['bilans'] = ($_SESSION['suma_przychodow'] + $_SESSION['suma_wydatkow']); 
+
+		$przychody_kategorie = BalanceModel::getIncomeCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+		$wydatki_kategorie = BalanceModel::getExpenseCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+
+		//var_dump($przychody_kategorie);
+		$_SESSION['przychody_tablica']=array(array('Task','Hours per Day'));
+		foreach ($przychody_kategorie as $var)
+		{
+			echo "\n", $var['income_category_assigned_to_user_id']. ' '. $var['SUM(amount)']. '<br>';
+			array_push($_SESSION['przychody_tablica'],$var['income_category_assigned_to_user_id'],$var['SUM(amount)']);
+		}
+
 		
-		//z podzialem na kategorie
-		$tablica6 = BalanceModel::getExpensesByCategory($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
-		$tablica7 = BalanceModel::getIncomesByCategory($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
-		var_dump($tablica6);
-		echo '<br>';
-		var_dump($tablica7);
-			/*while ($wiersz2 = $tablica7->fetch_assoc())
-			{
-				$numer_kategori_przychodow = (int)$wiersz7['income_category_assigned_to_user_id'];
-				$kategoria = $polaczenie->query("SELECT * FROM incomes_category_assigned_to_users WHERE id = '$numer_kategori_przychodow' AND user_id = '$user_id'");
-				$wiersz9 = $kategoria->fetch_assoc();
-				$kategorie_przychodow= '<b>'.$wiersz9['name'].' : </b>'.$wiersz7['SUM(amount)'].'<br>';
-				$_SESSION['przychody_kategorie']  .=$kategorie_przychodow;	
-				array_push($_SESSION['przychody_tablica'],$wiersz9['name'],$wiersz7['SUM(amount)']);	
-			}		*/
 	
 		View::renderTemplate('Balance/balance.html');		
 	}
@@ -92,7 +89,6 @@ class Balance extends \Core\Controller
 			{
 				return $_SESSION['data_koncowa'];
 			}
-			else 
 		}
 		public static function showSumOfExpenses()		
 		{
@@ -115,4 +111,11 @@ class Balance extends \Core\Controller
 				return $_SESSION['bilans'];
 			}					
 		}
+		public static function getIncomeTable()
+		{
+			if(isset($_SESSION['przychody_tablica']))
+			{
+				return $_SESSION['przychody_tablica'];
+			}					
+		}		
 	}		

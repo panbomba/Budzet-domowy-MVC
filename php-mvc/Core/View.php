@@ -52,6 +52,7 @@ class View
 			$twig->addGlobal('end_date', \App\Controllers\Balance::getEndDate());
 			$twig->addGlobal('sum_of_expenses', \App\Controllers\Balance::showSumOfExpenses());
 			$twig->addGlobal('sum_of_incomes', \App\Controllers\Balance::showSumOfIncomes());
+			$twig->addGlobal('table_of_incomes', \App\Controllers\Balance::getIncomeTable());
 			$twig->addGlobal('bilans', \App\Controllers\Balance::getBalance());
 			$twig->addGlobal('flash_messages', \App\Flash::getMessages());
         }
