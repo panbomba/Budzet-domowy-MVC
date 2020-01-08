@@ -22,6 +22,10 @@ class Balance extends \Core\Controller
 		$_SESSION['bilans'] = ($_SESSION['suma_przychodow'] + $_SESSION['suma_wydatkow']); 
 		static::showSumOfExpenses();
 		static::showSumOfIncomes();
+		$przychody_kategorie = BalanceModel::getIncomeCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+		$_SESSION['przychody_tablica'] = $przychody_kategorie;
+		$wydatki_kategorie = BalanceModel::getExpenseCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
+		$_SESSION['wydatki_tablica'] = $wydatki_kategorie;
 		
 		View::renderTemplate('Balance/balance.html');
 	}		
@@ -60,22 +64,21 @@ class Balance extends \Core\Controller
 		$przychody_kategorie = BalanceModel::getIncomeCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
 		$wydatki_kategorie = BalanceModel::getExpenseCategories($_SESSION['data_poczatkowa'], $_SESSION['data_koncowa']);
 
-		//var_dump($przychody_kategorie);
-		$_SESSION['przychody_tablica']=array(array('Task','Hours per Day'));
+		$_SESSION['przychody_tablica'] = $przychody_kategorie;
+		$_SESSION['wydatki_tablica'] = $wydatki_kategorie;
+		/*
+		$_SESSION['przychody_tablica']=array(array('Kategoria','Kwota'));
 		foreach ($przychody_kategorie as $var)
 		{
 			echo "\n", $var['income_category_assigned_to_user_id']. ' '. $var['SUM(amount)']. '<br>';
 			array_push($_SESSION['przychody_tablica'],$var['income_category_assigned_to_user_id'],$var['SUM(amount)']);
+			
 		}
+		var_dump($_SESSION['przychody_tablica']);
+		*/
 
-		
-	
 		View::renderTemplate('Balance/balance.html');		
 	}
-		
-		// przekazanie ustawionych dat do modelu ktory nastepnie zwroci dane do wyswietlenia
-		//powrot do strony bilansu
-		// czy zapisywac dane do sesji?
 		public static function getStartDate()
 		{
 			if(isset($_SESSION['data_poczatkowa']))
@@ -117,5 +120,12 @@ class Balance extends \Core\Controller
 			{
 				return $_SESSION['przychody_tablica'];
 			}					
-		}		
+		}	
+		public static function getExpenseTable()
+		{
+			if(isset($_SESSION['wydatki_tablica']))
+			{
+				return $_SESSION['wydatki_tablica'];
+			}					
+		}				
 	}		

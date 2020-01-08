@@ -95,8 +95,12 @@
 							<p>
 							Od: {{ start_date }}
 								<br>Do: {{ end_date }}
-								<br><br>przychody_kategorie:
-								<br>Suma Przychodów: {{ sum_of_incomes }}						
+								<br><br>								
+								{% for item in table_of_incomes %}						
+									<b>{{ item.0 }}:</b> {{item.1}}<br>
+								{% endfor %}
+
+								<br><b><span style="color: #5cb85c">Suma Przychodów:</span></b> {{ sum_of_incomes }}						
 							</p>
 							
 						</div>
@@ -107,10 +111,14 @@
 							<p>
 								Od: {{ start_date }}
 								<br>Do: {{ end_date }}
-								<br><br>przychody_kategorie
-								<br>Suma wydatków: {{ sum_of_expenses }}							
+								<br><br>
+								{% for item in table_of_expenses %}						
+									<b>{{ item.0 }}:</b> {{item.1}}<br>
+								{% endfor %}
+
+								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ sum_of_expenses }}										
 							</p>
-								PIE CHART				
+								<h4>PIE CHART</h4>				
 						</div>
 					</div>
 						

@@ -27,6 +27,8 @@ class BalanceModel extends \Core\Model
 
 		$stmt->execute();		
 		return $stmt->fetch();	
+		// odpalic kategorie przychodow
+		//odpalic kategorie wydatkow
 	}
 	
 	public static function getSumOfIncomes($start, $end)
@@ -49,7 +51,9 @@ class BalanceModel extends \Core\Model
 		$data_poczatkowa = date($start);
 		$data_koncowa = date($end);		
 		$user_id = $_SESSION['user_id'];		
-		$sql =  "SELECT income_category_assigned_to_user_id, SUM(amount) FROM incomes WHERE date_of_income BETWEEN '$data_poczatkowa' AND '$data_koncowa' AND user_id = '$user_id' GROUP BY income_category_assigned_to_user_id";	
+		//$sql =  "SELECT income_category_assigned_to_user_id, SUM(amount) FROM incomes WHERE date_of_income BETWEEN '$data_poczatkowa' AND '$data_koncowa' AND user_id = '$user_id' GROUP BY income_category_assigned_to_user_id";	
+		
+		$sql =  "SELECT name, SUM(amount) FROM incomes AS t2 INNER JOIN incomes_category_assigned_to_users AS t1 ON t2.income_category_assigned_to_user_id = t1.id AND t2.user_id = '$user_id' AND t2.date_of_income BETWEEN '$data_poczatkowa' AND '$data_koncowa' GROUP BY t1.name ";	
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
@@ -63,7 +67,8 @@ class BalanceModel extends \Core\Model
 		$data_poczatkowa = date($start);
 		$data_koncowa = date($end);		
 		$user_id = $_SESSION['user_id'];		
-		$sql =  "SELECT expense_category_assigned_to_user_id, SUM(amount) FROM expenses WHERE date_of_expense BETWEEN '$data_poczatkowa' AND '$data_koncowa' AND user_id = '$user_id' GROUP BY expense_category_assigned_to_user_id";	
+		//$sql =  "SELECT expense_category_assigned_to_user_id, SUM(amount) FROM expenses WHERE date_of_expense BETWEEN '$data_poczatkowa' AND '$data_koncowa' AND user_id = '$user_id' GROUP BY expense_category_assigned_to_user_id";	
+		$sql =  "SELECT name, SUM(amount) FROM expenses AS t2 INNER JOIN expenses_category_assigned_to_users AS t1 ON t2.expense_category_assigned_to_user_id = t1.id AND t2.user_id = '$user_id' AND t2.date_of_expense BETWEEN '$data_poczatkowa' AND '$data_koncowa' GROUP BY t1.name ";		
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
