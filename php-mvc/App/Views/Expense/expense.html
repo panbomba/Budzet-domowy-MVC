@@ -50,29 +50,29 @@
 
 						<h1>Dodaj wydatek</h1>
 								<form action="/Expense/create" method="post">
-									<label> Kwota    <input type="number" step="0.01" name="kwota"></label>
+									<label> Kwota    <input type="number" step="0.01" name="kwota" required></label>
 										<br><br>
-									<label>Data     <input type="date" name="data_wydatku" value="YYYY-MM-DD"></label>
+									<label>Data     <input type="date" name="data_wydatku" value="YYYY-MM-DD" required></label>
 										<br><br>
 									<fieldset class="radio">
 										<legend>Kategoria</legend>
 										
-											<div><label><input type="radio" value="jedzenie" name="wydatek"> Jedzenie</label></div>
-											<div><label><input type="radio" value="mieszkanie" name="wydatek"> Mieszkanie</label></div>
-											<div><label><input type="radio" value="transport" name="wydatek"> Transport</label></div>
-											<div><label><input type="radio" value="telekomunikacja" name="wydatek"> Telekomunikacja</label></div>
-											<div><label><input type="radio" value="zdrowie" name="wydatek"> Opieka zdrowotna</label></div>
-											<div><label><input type="radio" value="higiena" name="wydatek"> Higiena</label></div>
-											<div><label><input type="radio" value="dzieci" name="wydatek"> Dzieci</label></div>
-											<div><label><input type="radio" value="rozrywka" name="wydatek"> Rozrywka</label></div>
-											<div><label><input type="radio" value="wycieczka" name="wydatek"> Wycieczka</label></div>
-											<div><label><input type="radio" value="ubrania" name="wydatek"> Ubrania</label></div>
-											<div><label><input type="radio" value="książki" name="wydatek"> Książki</label></div>
-											<div><label><input type="radio" value="oszczędności" name="wydatek"> Oszczędności</label></div>
-											<div><label><input type="radio" value="na emeryturę" name="wydatek"> Na złotą jesień, czyli emeryturę</label></div>
-											<div><label><input type="radio" value="spłata długów" name="wydatek"> Spłata długów</label></div>
-											<div><label><input type="radio" value="darowizna" name="wydatek"> Darowizna</label></div>
-											<div><label><input type="radio" value="inne" name="wydatek"> Inne wydatki</label></div>
+											<div><label><input type="radio" value="jedzenie" name="wydatek" required> Jedzenie</label></div>
+											<div><label><input type="radio" value="mieszkanie" name="wydatek" required> Mieszkanie</label></div>
+											<div><label><input type="radio" value="transport" name="wydatek" required> Transport</label></div>
+											<div><label><input type="radio" value="telekomunikacja" name="wydatek" required> Telekomunikacja</label></div>
+											<div><label><input type="radio" value="zdrowie" name="wydatek" required> Opieka zdrowotna</label></div>
+											<div><label><input type="radio" value="higiena" name="wydatek" required> Higiena</label></div>
+											<div><label><input type="radio" value="dzieci" name="wydatek" required> Dzieci</label></div>
+											<div><label><input type="radio" value="rozrywka" name="wydatek" required> Rozrywka</label></div>
+											<div><label><input type="radio" value="wycieczka" name="wydatek" required> Wycieczka</label></div>
+											<div><label><input type="radio" value="ubrania" name="wydatek" required> Ubrania</label></div>
+											<div><label><input type="radio" value="książki" name="wydatek" required> Książki</label></div>
+											<div><label><input type="radio" value="oszczędności" name="wydatek" required> Oszczędności</label></div>
+											<div><label><input type="radio" value="na emeryturę" name="wydatek" required> Na złotą jesień, czyli emeryturę</label></div>
+											<div><label><input type="radio" value="spłata długów" name="wydatek" required> Spłata długów</label></div>
+											<div><label><input type="radio" value="darowizna" name="wydatek" required> Darowizna</label></div>
+											<div><label><input type="radio" value="inne" name="wydatek" required> Inne wydatki</label></div>
 									</fieldset>
 									<label for="okres">Sposób Płatności</label>
 										<select name="sposob" id="okres">

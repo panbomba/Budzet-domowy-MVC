@@ -50,16 +50,16 @@
 
 						<h1>Dodaj przychód</h1>
 								<form action="/Income/create" method="post">
-									<label> Kwota    <input type="number" step="0.01" name="kwota"></label>
+									<label> Kwota    <input type="number" step="0.01" name="kwota" required></label>
 										<br><br>
-									<label>Data     <input type="date" name="data_przychodu" value="YYYY-MM-DD"></label>
+									<label>Data     <input type="date" name="data_przychodu" value="YYYY-MM-DD" required></label>
 										<br><br>
-									<fieldset class="radio">
+									<fieldset class="radio" required>
 										<legend>Kategoria</legend>
-											<div><label><input type="radio" value="wynagrodzenie" name="przychod"> Wynagrodzenie</label></div>
-											<div><label><input type="radio" value="odsetki" name="przychod"> Odsetki bankowe</label></div>
-											<div><label><input type="radio" value="allegro" name="przychod"> Zysk ze sprzedaży w internecie</label></div>
-											<div><label><input type="radio" value="inne" name="przychod"> Inne</label></div>
+											<div><label><input type="radio" value="wynagrodzenie" name="przychod" required> Wynagrodzenie</label></div>
+											<div><label><input type="radio" value="odsetki" name="przychod" required> Odsetki bankowe</label></div>
+											<div><label><input type="radio" value="allegro" name="przychod" required> Zysk ze sprzedaży w internecie</label></div>
+											<div><label><input type="radio" value="inne" name="przychod" required> Inne</label></div>
 									</fieldset>
 									<br>
 									<div><label for="koment">Dodatkowe komentarze</label></div>

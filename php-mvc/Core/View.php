@@ -48,6 +48,13 @@ class View
             $twig = new \Twig_Environment($loader);
 			//$twig->addGlobal('session', $_SESSION);
 			$twig->addGlobal('current_user', \App\Auth::getUser());
+			$twig->addGlobal('start_date', \App\Controllers\Balance::getStartDate());
+			$twig->addGlobal('end_date', \App\Controllers\Balance::getEndDate());
+			$twig->addGlobal('sum_of_expenses', \App\Controllers\Balance::showSumOfExpenses());
+			$twig->addGlobal('sum_of_incomes', \App\Controllers\Balance::showSumOfIncomes());
+			$twig->addGlobal('table_of_incomes', \App\Controllers\Balance::getIncomeTable());
+			$twig->addGlobal('table_of_expenses', \App\Controllers\Balance::getExpenseTable());
+			$twig->addGlobal('bilans', \App\Controllers\Balance::getBalance());
 			$twig->addGlobal('flash_messages', \App\Flash::getMessages());
         }
 
