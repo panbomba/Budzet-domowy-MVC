@@ -117,11 +117,13 @@
 
 								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ expenses }}										
 							</p>
-							<h6>test tabeli</h6>
-								{% for item in table_of_expenses_pie_chart %}						
-									<b>{{ item.0 }}:</b> {{ item.1}}<br>
-								{% endfor %}
-								<h4>PIE CHART</h4>	
+
+								<h4>PIE CHART TEST</h4>	
+								
+								{% for item in expenses_categories %}						
+									['{{ item.0 }}', {{item.1|number_format}}] <br>
+								{% endfor %}	
+
 
 														<div id="piechart" align="center"></div>
 														<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -130,17 +132,19 @@
 														google.charts.setOnLoadCallback(drawChart);
 														function drawChart() {
 														  var data = google.visualization.arrayToDataTable([
-																							{% for item in table_of_expenses_pie_chart %}						
-									
-									{{ item.4 }}: {{ item.6 }}<br>
-								{% endfor %}
+														  
+														  ['Task', 'Hours per Day'],
+														{% for item in pie_chart %}						
+															"['".{{ item.0 }}."', ".{{item.1|number_format}}."],"
+														{% endfor %}	
+
 														]);
 														  var options = {'title':'', 'width':300, 'height':250, 'backgroundColor':'#dddddd', is3D: true,};
 														  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 														  chart.draw(data, options);
 														}
 														</script>		
-
+														
 
 								
 						</div>
