@@ -99,8 +99,7 @@
 								{% for item in table_of_incomes %}						
 									<b>{{ item.0 }}:</b> {{item.1}}<br>
 								{% endfor %}
-
-								<br><b><span style="color: #5cb85c">Suma Przychodów:</span></b> {{ sum_of_incomes }}						
+								<br><b><span style="color: #5cb85c">Suma Przychodów:</span></b> {{ incomes }}						
 							</p>
 							
 						</div>
@@ -116,9 +115,34 @@
 									<b>{{ item.0 }}:</b> {{item.1}}<br>
 								{% endfor %}
 
-								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ sum_of_expenses }}										
+								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ expenses }}										
 							</p>
-								<h4>PIE CHART</h4>				
+							<h6>test tabeli</h6>
+																														{% for item in table_of_expenses_pie_chart %}						
+									<b>{{ item.0 }}:</b> {{ item.1}}<br>
+								{% endfor %}
+								<h4>PIE CHART</h4>	
+
+														<div id="piechart" align="center"></div>
+														<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+														<script type="text/javascript">
+														google.charts.load('current', {'packages':['corechart']});
+														google.charts.setOnLoadCallback(drawChart);
+														function drawChart() {
+														  var data = google.visualization.arrayToDataTable([
+																							{% for item in table_of_expenses_pie_chart %}						
+									
+									{{ item.4 }}: {{ item.6 }}<br>
+								{% endfor %}
+														]);
+														  var options = {'title':'', 'width':300, 'height':250, 'backgroundColor':'#dddddd', is3D: true,};
+														  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+														  chart.draw(data, options);
+														}
+														</script>		
+
+
+								
 						</div>
 					</div>
 						
@@ -126,10 +150,10 @@
 						<div class = "tile2">
 						<h4><b>Podsumowanie</b></h4>
 							<p>
-								Bilans: {{ bilans }}
-								{% if bilans > 0 %}
+								Bilans: {{ balance }}
+								{% if balance > 0 %}
 								<p><b><span style="color: #5cb85c">Gratulacje. Świetnie zarządzasz finansami!</span></b></p>
-								{% elseif bilans == 0 %}
+								{% elseif balance == 0 %}
 								<p><b>Bilans w wybranym okresie to zero.</b></p>								
 								{% else %}
 								<p><b><span style="color: red">Uważaj, wpadasz w długi!</span></b></p>
