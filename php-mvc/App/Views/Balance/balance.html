@@ -53,7 +53,7 @@
 										Wybierz okres
 								</button>
 							 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-							 <form action="/Balance/create" method="post">
+							 <form action="/Balance/new" method="post">
 								<button class="dropdown-item" type="submit" name="okres" value="1">Bieżący miesiąc</button>
 								<button class="dropdown-item" type="submit" name="okres" value="2">Poprzedni miesiąc</button>
 								<button class="dropdown-item" type="submit" name="okres" value="3">Bieżący rok</button>
@@ -72,7 +72,7 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
-								  <form action="/Balance/create" method="post">
+								  <form action="/Balance/new" method="post">
 								  <div class="modal-body">
 										<label>Data początkowa <input type="date" name="start"  value="YYYY-MM-DD"></label>
 										<label>Data końcowa <input type="date" name="end"  value="YYYY-MM-DD"></label>
