@@ -51,12 +51,6 @@ class Balance extends \Core\Controller
 		$args['balance'] = ((double)$tablica5['SUM(amount)'] + -(double)$tablica4['SUM(amount)']);
 		$args['incomes_categories'] = BalanceModel::getIncomeCategories($data_poczatkowa, $data_koncowa);
 		$args['expenses_categories'] = BalanceModel::getExpenseCategories($data_poczatkowa, $data_koncowa);
-		$args['pie_chart_array'] = array(['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]);
 
 		View::renderTemplate('Balance/balance.html', $args);		
 	}	
