@@ -73,4 +73,28 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->fetch();	
 	}	
 	
+	public static function getExpenseCategoriesAssignedToUser()
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "SELECT name FROM expenses_category_assigned_to_users WHERE user_id =  '$user_id'";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		$stmt->execute();		
+		
+		return $stmt->fetchAll();
+	}	
+
+	public static function getPaymentMethodsAssignedToUser()
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "SELECT name FROM payment_methods_assigned_to_users WHERE user_id =  '$user_id'";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		$stmt->execute();		
+		
+		return $stmt->fetchAll();
+	}			
+	
 }

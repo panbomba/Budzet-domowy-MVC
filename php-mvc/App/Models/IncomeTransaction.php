@@ -57,5 +57,17 @@ class IncomeTransaction extends \Core\Model
 		$stmt->execute();		
 		return $stmt->fetch();	
 	}
+	
+	public static function getIncomeCategoriesAssignedToUser()
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "SELECT name FROM incomes_category_assigned_to_users WHERE user_id =  '$user_id'";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		$stmt->execute();		
+		
+		return $stmt->fetchAll();
+	}		
 
 }
