@@ -44,6 +44,82 @@
 			</div>	
 		</nav>
 
+		<main>
+			<section>
+				<div class="wydatek">
 <h1>Ustawienia</h1>
+	<br>
+	<div id="accordion" class="myaccordion">
+
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        Kategorie przychodów
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+									<fieldset class="radio" required>
+											{% for item in inc_cat_assigned %}						
+												<div><label><input type="radio" value="{{ item.0 }}" name="przychod" required> {{ item.0 }}</label></div>
+											{% endfor %}												
+									</fieldset> 
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        Kategorie wydatków
+      </a>
+    </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+      <div class="card-body">								
+									<fieldset class="radio">								
+											{% for item in exp_cat_assigned %}						
+												<div><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label></div>
+											{% endfor %}		
+									</fieldset>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+        Sposoby płatności
+      </a>
+    </div>
+    <div id="collapseThree" class="collapse" data-parent="#accordion">
+      <div class="card-body">								
+									<fieldset class="radio">						
+											{% for item in pay_meth_assigned %}						
+												<div><label><input type="radio" value="{{ item.0 }}" name="sposob" required> {{ item.0 }}</label></div>
+											{% endfor %}		
+									</fieldset>
+      </div>
+    </div>
+  </div> 
+
+  <div class="card">
+  
+    <div class="card-header">
+      <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+        Użytkownik
+      </a>
+    </div>
+    <div id="collapseFour" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        Tutaj możesz edytować Twoje dane
+      </div>
+    </div>
+  </div>
+
+</div>
+
+				</div>
+			</section>
+		</main>
 
 {% endblock %}
