@@ -87,6 +87,11 @@ body
 	color: #5cb85c;
 }
 
+.icon-trash
+{
+	color: tomato;
+}
+
 .artykul-main
 {
 	margin-top: 60px;
@@ -223,7 +228,8 @@ input
 
 .myaccordion .card
 {
-	border: 10px;
+	border: 1px solid #15B5CA;
+	border-radius: 5px;
 }
 
 

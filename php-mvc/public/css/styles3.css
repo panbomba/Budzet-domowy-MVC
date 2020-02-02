@@ -77,6 +77,11 @@ body
 	color: tomato;
 }
 
+.icon-login
+{
+	color: #5cb85c;
+}
+
 .icon-cogs
 {
 	color: gold;
@@ -85,6 +90,16 @@ body
 .icon-user-1
 {
 	color: #5cb85c;
+}
+
+.icon-trash
+{
+	color: tomato;
+}
+
+.icon-pencil
+{
+	color: #0099ff;
 }
 
 .artykul-main
@@ -223,7 +238,35 @@ input
 
 .myaccordion .card
 {
-	border: 10px;
+	border: 1px solid #15B5CA;
+	border-radius: 5px;
 }
+
+#one_line:hover
+{
+	background-color: white;
+}
+
+.small_icon:hover
+{
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.modal-dialog
+{
+	width: 450px;
+}
+
+.modal-body
+{
+	text-align: center;	
+}
+
+.modal-footer
+{
+	align: center;
+}
+
 
 
