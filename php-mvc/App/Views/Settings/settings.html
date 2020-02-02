@@ -198,18 +198,18 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edytuj kategorię</h5>
+										<h5 class="modal-title">Edytuj kategorię {{ item.0 }} </h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
-								  <form action="/Balance/new" method="post">
+								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa_kategorii">
+										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="4" name="okres" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="1" name="edycja" class="btn btn-success">Potwierdzam</button>
 									</form>
 								</div>
 								</div>
@@ -226,14 +226,13 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
-								  <form action="/Balance/new" method="post">
+								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa_kategorii">
-										<input type="number" step="0.01" placeholder="Limit" name="nowy_limit" disabled>
+										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="4" name="okres" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="2" name="edycja" class="btn btn-success">Potwierdzam</button>
 									</form>
 								</div>
 								</div>
@@ -250,13 +249,13 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
-								  <form action="/Balance/new" method="post">
+								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa_kategorii">
+										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="4" name="okres" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="3" name="edycja" class="btn btn-success">Potwierdzam</button>
 									</form>
 								</div>
 								</div>

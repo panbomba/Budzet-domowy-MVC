@@ -6,7 +6,6 @@ use \Core\View;
 use \App\Models\User;
 use \App\Models\ExpenseTransaction;
 use \App\Models\IncomeTransaction;
-//prawdopodobnie rowniez pozostale modele
 
 use \App\Auth;
 use \App\Flash;
@@ -26,24 +25,35 @@ class Settings extends \Core\Controller
 	{
 		if(isset($_POST['kategoria']))
 		{
-				if($_POST['kategoria'] == 1) //przychod
+				if($_POST['kategoria'] == 1)
 				{
-					//echo $_POST['nowa_nazwa'];
-//dopisz nowa kategorie przychodu 
-//IncomeTransaction::addNewIncomeCategory($_POST['nowa_nazwa']);
+					IncomeTransaction::addNewIncomeCategory($_POST['nowa_nazwa']);
 				}
 				else if($_POST['kategoria'] == 2)
 				{
-//					echo 'lalala';
-//dopisz nowa kategorie wydatku			
-//ExpenseTransaction::addNewExpenseCategory($_POST['nowa_nazwa']);
+					ExpenseTransaction::addNewExpenseCategory($_POST['nowa_nazwa']);
 				}
 				else if($_POST['kategoria'] == 3)
-				{;
-//dopisz nowa metode platnosci
-//ExpenseTransaction::addNewPaymentMethod($_POST['nowa_nazwa']);
+				{
+					ExpenseTransaction::addNewPaymentMethod($_POST['nowa_nazwa']);
 				}	
 		}
+		
+		if(isset($_POST['edycja']))
+		{
+				if($_POST['edycja'] == 1)
+				{
+					IncomeTransaction::changeIncomeCategoryName($_POST['nowa_nazwa']);
+				}
+				else if($_POST['edycja'] == 2)
+				{
+					ExpenseTransaction::changeExpenseCategoryName($_POST['nowa_nazwa']);
+				}
+				else if($_POST['edycja'] == 3)
+				{
+					ExpenseTransaction::changePaymentMethodName($_POST['nowa_nazwa']);
+				}	
+		}		
 		var_dump($_POST);
 
 		$args = [];

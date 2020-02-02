@@ -20,8 +20,6 @@ class Expense extends \Core\Controller
 	public function createAction()
 	{	
 		ExpenseTransaction::saveNewExpense();
-			//wyswietl informacje o powodzeniu transakcji
-			// dodac klawisz powrot ktory przekieruje do incomes view
 	}
 
 	

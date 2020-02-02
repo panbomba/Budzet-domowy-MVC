@@ -97,4 +97,50 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->fetchAll();
 	}			
 	
+	public static function addNewExpenseCategory($newCategory)
+	{
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		
+	}
+
+	public static function addNewPaymentMethod($newMethod)
+	{
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		
+	}	
+
+	public static function changeExpenseCategoryName($newName)
+	{
+		;
+		/*$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		*/
+	}	
+
+	public static function changePaymentMethodName($newName)
+	{
+		;
+		/*$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		*/
+	}		
+	
 }
