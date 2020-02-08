@@ -221,11 +221,6 @@ input
 	text-align: right;	
 }
 
-.modal-dialog
-{
-	width: 300px;
-}
-
 .myaccordion .card
 {
 	background-color: #dddddd;
@@ -238,6 +233,7 @@ input
 
 .myaccordion .card
 {
+	margin: 5px;
 	border: 1px solid #15B5CA;
 	border-radius: 5px;
 }
@@ -255,7 +251,7 @@ input
 
 .modal-dialog
 {
-	width: 450px;
+	width: auto;
 }
 
 .modal-body
@@ -263,6 +259,21 @@ input
 	text-align: center;	
 }
 
+.modal-content
+{
+	background-color: #d5e8ee;
+	border: 1px solid #15B5CA;
+	border-radius: 5px;	
+}
 
+.btn-success
+{
+	background-color: #5cb85c;
+}
+
+.btn-danger
+{
+	background-color: tomato;
+}
 
 

@@ -46,25 +46,25 @@
 
 		<main>
 			<section>
-				<div class="wydatek" style="width: 50%">
+				<div class="wydatek" style="width: 70%" style"min-width: 500">
 <h1>Ustawienia</h1>
+<p>{{ inc_cat_assigned.item.0 }}</p>
 	<br>
 	<div id="accordion" class="myaccordion">
 
   <div class="card">
     <div class="card-header">
       <a class="card-link" data-toggle="collapse" href="#collapseOne">
-        Kategorie przychodów
+        PRZYCHODY
       </a>
     </div>
     <div id="collapseOne" class="collapse" data-parent="#accordion">
       <div class="card-body">
-									<fieldset class="radio" required>
-											{% for item in inc_cat_assigned %}						
-												<div id="one_line"><label><input type="radio" value="{{ item.0 }}" name="przychod" required>  {{ item.0 }} </label><span style="float: right"><a class="small_icon" type="button" name="edycja" data-toggle="modal" data-target="#modal-edycja-przychody"><i class="icon-pencil"></i></a><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie"><i class="icon-trash"></i></a></span></div>
-											{% endfor %}
-												<br><div id="one_line"><b>Dodaj kategorię przychodów</b><span style="float: right"><a class="small_icon" type="button" name="okres" data-toggle="modal" data-target="#modal-nowa_kategoria_przychod"><i class="icon-login"></i></a></div>	
-									</fieldset> 
+		
+												<div id="one_line" align="left"><b>Edytuj<span style="float: right"><a class="small_icon"  type="button" data-toggle="modal" data-target="#modal-edycja-przychody"><i class="icon-pencil"></i></a></span></div><br>
+												<div id="one_line" align="left">Usuń<span style="float: right"><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie-przychody"><i class="icon-trash"></i></a></span></div><br>
+												<div id="one_line"align="left">Dodaj kategorię przychodów</b><span style="float: right"><a class="small_icon" type="button" data-toggle="modal" data-target="#modal-nowa_kategoria_przychod"><i class="icon-login"></i></a></div>	
+
       </div>
     </div>
   </div>
@@ -72,17 +72,16 @@
   <div class="card">
     <div class="card-header">
       <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-        Kategorie wydatków
+        WYDATKI
       </a>
     </div>
     <div id="collapseTwo" class="collapse" data-parent="#accordion">
-      <div class="card-body">								
-									<fieldset class="radio">								
-											{% for item in exp_cat_assigned %}						
-												<div id="one_line"><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label><span style="float: right"><a class="small_icon"  type="button" name="edycja" data-toggle="modal" data-target="#modal-edycja-wydatki"><i class="icon-pencil"></i></a><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie"><i class="icon-trash"></i></a></span></div>
-											{% endfor %}	
-												<br><div id="one_line"><b>Dodaj kategorię wydatków</b><span style="float: right"><a class="small_icon" type="button" name="okres" data-toggle="modal" data-target="#modal-nowa_kategoria_wydatek"><i class="icon-login"></i></a></div>	
-									</fieldset>
+      <div class="card-body">	
+	  
+												<div id="one_line" align="left"><b>Edytuj<span style="float: right"><a class="small_icon"  type="button"  data-toggle="modal" data-target="#modal-edycja-wydatki"><i class="icon-pencil"></i></a></span></div><br>
+												<div id="one_line" align="left">Usuń<span style="float: right"><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie-wydatki"><i class="icon-trash"></i></a></span></div><br>
+												<div id="one_line"align="left">Dodaj kategorię wydatków</b><span style="float: right"><a class="small_icon" type="button" data-toggle="modal" data-target="#modal-nowa_kategoria_wydatek"><i class="icon-login"></i></a></div>	
+
       </div>
     </div>
   </div>
@@ -90,19 +89,16 @@
   <div class="card">
     <div class="card-header">
       <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-        Sposoby płatności
+        SPOSOBY PŁATNOŚCI
       </a>
     </div>
     <div id="collapseThree" class="collapse" data-parent="#accordion">
       <div class="card-body">
-								<form action="/Settings/create" method="post">	  
-									<fieldset class="radio">						
-											{% for item in pay_meth_assigned %}						
-												<div id="one_line"><label><input type="radio" value="{{ item.0 }}" name="sposob" required> {{ item.0 }}</label><span style="float: right"><a class="small_icon"  type="button" name="edycja" data-toggle="modal" data-target="#modal-edycja-platnosci"><i class="icon-pencil"></i></a><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie"><i class="icon-trash"></i></a></span></div>
-											{% endfor %}		
-												<br><div id="one_line"><b>Dodaj sposób płatności</b><span style="float: right"><a class="small_icon" type="button" name="okres" data-toggle="modal" data-target="#modal-nowa_metoda_platnosci"><i class="icon-login"></i></a></div>	
-									</fieldset>
-								</form>	
+
+												<div id="one_line" align="left"><b>Edytuj<span style="float: right"><a class="small_icon"  type="button"  data-toggle="modal" data-target="#modal-edycja-platnosci"><i class="icon-pencil"></i></a></span></div><br>
+												<div id="one_line" align="left">Usuń<span style="float: right"><a class="small_icon" type="button" name="usuwanie" data-toggle="modal" data-target="#modal-usuwanie-platnosci"><i class="icon-trash"></i></a></span></div><br>
+												<div id="one_line"align="left">Dodaj metodę płatności</b><span style="float: right"><a class="small_icon" type="button" name="okres" data-toggle="modal" data-target="#modal-nowa_metoda_platnosci"><i class="icon-login"></i></a></div>	
+
       </div>
     </div>
   </div> 
@@ -111,7 +107,7 @@
   
     <div class="card-header">
       <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-        Użytkownik
+        UŻYTKOWNIK
       </a>
     </div>
     <div id="collapseFour" class="collapse" data-parent="#accordion">
@@ -137,7 +133,7 @@
 								  </div>
 								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nazwa kategorii" name="nowa_nazwa">
+										<input class="form-control" type="text" placeholder="Nazwa kategorii" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
@@ -160,7 +156,7 @@
 								  </div>
 								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nazwa kategorii" name="nowa_nazwa">
+										<input class="form-control" type="text" placeholder="Nazwa kategorii" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
@@ -182,7 +178,7 @@
 								  </div>
 								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nazwa sposobu płatności" name="nowa_nazwa">
+										<input class="form-control" type="text" placeholder="Nazwa sposobu płatności" name="nowa_nazwa">
 								  </div>								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
@@ -198,18 +194,27 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edytuj kategorię {{ item.0 }} </h5>
+										<h5 class="modal-title">Edycja</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
 								  <form action="/Settings/create" method="post">
+								  
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
-								  </div>								  
+										<select class="form-control" name="stara_nazwa">
+										<option disabled selected value> -- wybierz -- </option>
+											{% for item in inc_cat_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select>
+									<br><br>											
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+								  </div>	
+								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="1" name="edycja" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="1" name="akcja" class="btn btn-success">Potwierdzam</button>
 									</form>
 								</div>
 								</div>
@@ -221,18 +226,27 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edytuj kategorię</h5>
+										<h5 class="modal-title">Edycja</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
 								  <form action="/Settings/create" method="post">
+								  
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
-								  </div>								  
+										<select class="form-control" name="stara_nazwa">
+										<option disabled selected value> -- wybierz -- </option>										
+											{% for item in exp_cat_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select>
+									<br><br>											
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+								  </div>	
+								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="2" name="edycja" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="2" name="akcja" class="btn btn-success">Potwierdzam</button>
 									</form>
 								</div>
 								</div>
@@ -244,46 +258,127 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edytuj kategorię</h5>
+										<h5 class="modal-title">Edycja</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Settings/create" method="post">
+								  
+								  <div class="modal-body">
+										<select class="form-control" name="stara_nazwa">
+										<option disabled selected value> -- wybierz -- </option>										
+											{% for item in pay_meth_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select>
+									<br><br>											
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+								  </div>	
+								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="3" name="akcja" class="btn btn-success">Potwierdzam</button>
+									</form>
+								</div>
+								</div>
+							 </div>
+						</div>	
+						
+										<!-- Modal usuwanie kategorii przychodow-->
+						<div class="modal fade" id="modal-usuwanie-przychody" tabindex="-1" role="dialog" aria-labelledby="modal-usuwanie" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">USUWANIE KATEGORI!</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
 								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<input type="text" placeholder="Nowa nazwa" name="nowa_nazwa">
-								  </div>								  
+								  
+										<select class="form-control" name="usuwana_kategoria">
+										<option disabled selected value> -- wybierz -- </option>										
+											{% for item in inc_cat_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select><br>								  								  
+										<b><span style="color: tomato">UWAGA! ZAMIERZASZ CAŁKOWICIE USUNĄĆ KATEGORIĘ!</span></b>
+								  </div>	
+								  
 								  <div class="modal-footer">								  
-									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="3" name="edycja" class="btn btn-success">Potwierdzam</button>
+									<button type="button" class="btn btn-success" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="4" name="akcja" class="btn btn-danger">Usuń</button>
 									</form>
 								</div>
 								</div>
 							 </div>
-						</div>								
-										<!-- Modal usuwanie-->
-						<div class="modal fade" id="modal-usuwanie" tabindex="-1" role="dialog" aria-labelledby="modal-usuwanie" aria-hidden="true">
+						</div>
+
+										<!-- Modal usuwanie kategorii wydatkow-->
+						<div class="modal fade" id="modal-usuwanie-wydatki" tabindex="-1" role="dialog" aria-labelledby="modal-usuwanie" aria-hidden="true">
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">USUWANIE KATEGORII!</h5>
+										<h5 class="modal-title">USUWANIE KATEGORI!</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 								  </div>
-								  <form action="/Balance/new" method="post">
+								  <form action="/Settings/create" method="post">
 								  <div class="modal-body">
-										<b><span style="color: red">UWAGA! ZAMIERZASZ CAŁKOWICIE USUNĄĆ KATEGORIĘ!</span></b>
-								  </div>								  
+								  
+										<select class="form-control" name="usuwana_kategoria">
+										<option disabled selected value> -- wybierz -- </option>
+											{% for item in exp_cat_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select><br>								  								  
+										<b><span style="color: tomato">UWAGA! ZAMIERZASZ CAŁKOWICIE USUNĄĆ KATEGORIĘ!</span></b>
+								  </div>	
+								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-success" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="4" name="okres" class="btn btn-danger">Usuń</button>
+									<button type="submit" value="5" name="akcja" class="btn btn-danger">Usuń</button>
 									</form>
 								</div>
 								</div>
 							 </div>
-						</div>									
+						</div>	
+
+										<!-- Modal usuwanie sposobow platnosci-->
+						<div class="modal fade" id="modal-usuwanie-platnosci" tabindex="-1" role="dialog" aria-labelledby="modal-usuwanie" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">USUWANIE KATEGORI!</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Settings/create" method="post">
+								  <div class="modal-body">
+								  
+										<select class="form-control" name="usuwana_kategoria">
+										<option disabled selected value> -- wybierz -- </option>
+											{% for item in pay_meth_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
+										</select><br>								  								  
+										<b><span style="color: tomato">UWAGA! ZAMIERZASZ CAŁKOWICIE USUNĄĆ KATEGORIĘ!</span></b>
+								  </div>	
+								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-success" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="6" name="akcja" class="btn btn-danger">Usuń</button>
+									</form>
+								</div>
+								</div>
+							 </div>
+						</div>							
 			</section>
+			
 		</main>
 
 {% endblock %}

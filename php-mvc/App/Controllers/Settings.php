@@ -53,8 +53,9 @@ class Settings extends \Core\Controller
 				{
 					ExpenseTransaction::changePaymentMethodName($_POST['nowa_nazwa']);
 				}	
-		}		
-		var_dump($_POST);
+		}
+
+		 var_dump($_POST);
 
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();				
