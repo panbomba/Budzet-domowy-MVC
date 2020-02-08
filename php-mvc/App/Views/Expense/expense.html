@@ -54,41 +54,31 @@
 										<br><br>
 									<label>Data     <input type="date" name="data_wydatku" value="YYYY-MM-DD" required></label>
 										<br><br>
+
 									<fieldset class="radio">
-										<legend>Kategoria</legend>
-										
-											<div><label><input type="radio" value="jedzenie" name="wydatek" required> Jedzenie</label></div>
-											<div><label><input type="radio" value="mieszkanie" name="wydatek" required> Mieszkanie</label></div>
-											<div><label><input type="radio" value="transport" name="wydatek" required> Transport</label></div>
-											<div><label><input type="radio" value="telekomunikacja" name="wydatek" required> Telekomunikacja</label></div>
-											<div><label><input type="radio" value="zdrowie" name="wydatek" required> Opieka zdrowotna</label></div>
-											<div><label><input type="radio" value="higiena" name="wydatek" required> Higiena</label></div>
-											<div><label><input type="radio" value="dzieci" name="wydatek" required> Dzieci</label></div>
-											<div><label><input type="radio" value="rozrywka" name="wydatek" required> Rozrywka</label></div>
-											<div><label><input type="radio" value="wycieczka" name="wydatek" required> Wycieczka</label></div>
-											<div><label><input type="radio" value="ubrania" name="wydatek" required> Ubrania</label></div>
-											<div><label><input type="radio" value="książki" name="wydatek" required> Książki</label></div>
-											<div><label><input type="radio" value="oszczędności" name="wydatek" required> Oszczędności</label></div>
-											<div><label><input type="radio" value="na emeryturę" name="wydatek" required> Na złotą jesień, czyli emeryturę</label></div>
-											<div><label><input type="radio" value="spłata długów" name="wydatek" required> Spłata długów</label></div>
-											<div><label><input type="radio" value="darowizna" name="wydatek" required> Darowizna</label></div>
-											<div><label><input type="radio" value="inne" name="wydatek" required> Inne wydatki</label></div>
+										<legend>Kategoria</legend>										
+											{% for item in exp_cat_assigned %}						
+												<div><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label></div>
+											{% endfor %}		
 									</fieldset>
+									<br>
+
 									<label for="okres">Sposób Płatności</label>
 										<select name="sposob" id="okres">
-											<option value="gotówka" selected>Gotówka</option>
-											<option value="karta debetowa">Karta debetowa</option>
-											<option value="karta kredytowa">Karta kredytowa</option>
+											{% for item in pay_meth_assigned %}						
+												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% endfor %}											
 										</select>
-									<br><br>
+									<br><br>									
+
 									<div><label for="komentarz">Dodatkowe komentarze</label></div>
 										<textarea name="komentarz" id="komentarz" rows="4" cols="50"></textarea>
-								<br><br>
-								<input type="submit" style="background-color: #5cb85c; color: white" value="Dodaj wydatek">
-								<br><br>
-								<input type="reset" style="background-color: orange; color: white" value="Anuluj">
+									<br><br>
+									<input type="submit" style="background-color: #5cb85c; color: white" value="Dodaj wydatek">
+									<br><br>
+									<input type="reset" style="background-color: orange; color: white" value="Anuluj">
 
-	</form>
+								</form>
 
 				</div>
 			</section>

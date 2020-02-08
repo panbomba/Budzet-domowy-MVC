@@ -77,6 +77,11 @@ body
 	color: tomato;
 }
 
+.icon-login
+{
+	color: #5cb85c;
+}
+
 .icon-cogs
 {
 	color: gold;
@@ -85,6 +90,16 @@ body
 .icon-user-1
 {
 	color: #5cb85c;
+}
+
+.icon-trash
+{
+	color: tomato;
+}
+
+.icon-pencil
+{
+	color: #0099ff;
 }
 
 .artykul-main
@@ -206,8 +221,59 @@ input
 	text-align: right;	
 }
 
+.myaccordion .card
+{
+	background-color: #dddddd;
+}
+.myaccordion .card-link
+{
+	color: black;
+	font-weight: bold;
+}
+
+.myaccordion .card
+{
+	margin: 5px;
+	border: 1px solid #15B5CA;
+	border-radius: 5px;
+}
+
+#one_line:hover
+{
+	background-color: #d5e8ee;
+}
+
+.small_icon:hover
+{
+	opacity: 0.6;
+	cursor: pointer;
+}
+
 .modal-dialog
 {
-	width: 300px;
+	width: auto;
 }
+
+.modal-body
+{
+	text-align: center;	
+}
+
+.modal-content
+{
+	background-color: #d5e8ee;
+	border: 1px solid #15B5CA;
+	border-radius: 5px;	
+}
+
+.btn-success
+{
+	background-color: #5cb85c;
+}
+
+.btn-danger
+{
+	background-color: tomato;
+}
+
 

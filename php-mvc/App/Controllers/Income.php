@@ -10,7 +10,9 @@ class Income extends \Core\Controller
 {
 	public function newAction()
 	{
-		View::renderTemplate('Income/income.html');
+		$args = [];
+		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();		
+		View::renderTemplate('Income/income.html', $args);
 	}
 
 	public function createAction() //czy powinienem przekazac id zalogowanego 

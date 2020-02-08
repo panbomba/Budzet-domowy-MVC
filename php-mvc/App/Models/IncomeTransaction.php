@@ -57,5 +57,40 @@ class IncomeTransaction extends \Core\Model
 		$stmt->execute();		
 		return $stmt->fetch();	
 	}
+	
+	public static function getIncomeCategoriesAssignedToUser()
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "SELECT name FROM incomes_category_assigned_to_users WHERE user_id =  '$user_id'";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		$stmt->execute();		
+		
+		return $stmt->fetchAll();
+	}		
+	
+	public static function addNewIncomeCategory($newCategory)
+	{
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		
+	}
+
+	public static function changeIncomeCategoryName($newName)
+	{
+		;
+		/*$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		*/
+	}	
 
 }

@@ -47,21 +47,21 @@
 		<main>
 			<section>
 				<div class="przychod">
-
 						<h1>Dodaj przychód</h1>
 								<form action="/Income/create" method="post">
 									<label> Kwota    <input type="number" step="0.01" name="kwota" required></label>
 										<br><br>
 									<label>Data     <input type="date" name="data_przychodu" value="YYYY-MM-DD" required></label>
 										<br><br>
+
 									<fieldset class="radio" required>
 										<legend>Kategoria</legend>
-											<div><label><input type="radio" value="wynagrodzenie" name="przychod" required> Wynagrodzenie</label></div>
-											<div><label><input type="radio" value="odsetki" name="przychod" required> Odsetki bankowe</label></div>
-											<div><label><input type="radio" value="allegro" name="przychod" required> Zysk ze sprzedaży w internecie</label></div>
-											<div><label><input type="radio" value="inne" name="przychod" required> Inne</label></div>
+											{% for item in inc_cat_assigned %}						
+												<div><label><input type="radio" value="{{ item.0 }}" name="przychod" required> {{ item.0 }}</label></div>
+											{% endfor %}												
 									</fieldset>
-									<br>
+									<br>										
+									
 									<div><label for="koment">Dodatkowe komentarze</label></div>
 										<textarea name="koment" rows="4" cols="50"></textarea>
 								<br><br>
