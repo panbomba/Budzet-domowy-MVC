@@ -38,7 +38,6 @@ class IncomeTransaction extends \Core\Model
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
 		Flash::addMessage('Transakcja dodana pomyślnie.');		
-		View::renderTemplate('Income/income.html');
 
 		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
 		
@@ -95,14 +94,17 @@ class IncomeTransaction extends \Core\Model
 
 	public static function deleteIncomeCategory($name)
 	{
-		;
-		/*$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
+		;/*
+		//sprawdz czy istnieje juz kategoria 'usuniete kategorie'; jezeli nie to przypisz ja do uzytkownika
+		//skopiuj wszystkie dane transakcji z usuwana nazwa do nowej kategorii
+		//usun wszystko z usuwanej kategorii
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', 'usunieta_kategoria')";
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
 		
-		return $stmt->execute();		*/
+		return $stmt->execute();*/
 	}		
 
 }

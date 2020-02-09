@@ -47,7 +47,7 @@ class Settings extends \Core\Controller
 				}
 				else if($_POST['akcja'] == 2)
 				{
-					ExpenseTransaction::changeExpenseCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
+					ExpenseTransaction::changeExpenseCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa'], $_POST['limit']);
 				}
 				else if($_POST['akcja'] == 3)
 				{
@@ -67,7 +67,7 @@ class Settings extends \Core\Controller
 				}					
 		}
 
-		 var_dump($_POST);
+		 //var_dump($_POST);
 
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();				

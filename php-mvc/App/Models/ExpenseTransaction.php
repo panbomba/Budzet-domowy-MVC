@@ -40,7 +40,6 @@ class ExpenseTransaction extends \Core\Model
 		$stmt = $db->prepare($sql);
 		
 		Flash::addMessage('Transakcja dodana pomyślnie.');		
-		View::renderTemplate('Expense/expense.html');
 
 		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
 		return $stmt->execute();		
@@ -119,16 +118,27 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->execute();		
 	}	
 
-	public static function changeExpenseCategoryName($oldName, $newName)
+	public static function changeExpenseCategoryName($oldName, $newName, $limit)
 	{
 		$user_id = $_SESSION['user_id'];
 		
+		if($newName !="")
+		{
 		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
+		}
 		
-		return $stmt->execute();	
+		if($limit !=0)
+		{
+		$sql2 = "UPDATE expenses_category_assigned_to_users SET limity = '$limit' WHERE name = '$oldName' AND user_id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql2);					
+		}
+		
+		return $stmt->execute();		
 	}	
 
 	public static function changePaymentMethodName($oldName, $newName)
