@@ -39,20 +39,32 @@ class Settings extends \Core\Controller
 				}	
 		}
 		
-		if(isset($_POST['edycja']))
+		if(isset($_POST['akcja']))
 		{
-				if($_POST['edycja'] == 1)
+				if($_POST['akcja'] == 1)
 				{
-					IncomeTransaction::changeIncomeCategoryName($_POST['nowa_nazwa']);
+					IncomeTransaction::changeIncomeCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
 				}
-				else if($_POST['edycja'] == 2)
+				else if($_POST['akcja'] == 2)
 				{
-					ExpenseTransaction::changeExpenseCategoryName($_POST['nowa_nazwa']);
+					ExpenseTransaction::changeExpenseCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
 				}
-				else if($_POST['edycja'] == 3)
+				else if($_POST['akcja'] == 3)
 				{
-					ExpenseTransaction::changePaymentMethodName($_POST['nowa_nazwa']);
+					ExpenseTransaction::changePaymentMethodName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
+				}
+				else if($_POST['akcja'] == 4)
+				{
+					IncomeTransaction::deleteIncomeCategory($_POST['usuwana_kategoria']);
 				}	
+				else if($_POST['akcja'] == 5)
+				{
+					ExpenseTransaction::deleteExpenseCategory($_POST['usuwana_kategoria']);
+				}					
+				else if($_POST['akcja'] == 6)
+				{
+					ExpenseTransaction::deletePaymentMethod($_POST['usuwana_kategoria']);
+				}					
 		}
 
 		 var_dump($_POST);

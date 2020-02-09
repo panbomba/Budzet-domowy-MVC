@@ -81,7 +81,19 @@ class IncomeTransaction extends \Core\Model
 		return $stmt->execute();		
 	}
 
-	public static function changeIncomeCategoryName($newName)
+	public static function changeIncomeCategoryName($oldName, $newName)
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE incomes_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();	
+	}
+
+	public static function deleteIncomeCategory($name)
 	{
 		;
 		/*$user_id = $_SESSION['user_id'];
@@ -91,6 +103,6 @@ class IncomeTransaction extends \Core\Model
 		$stmt = $db->prepare($sql);
 		
 		return $stmt->execute();		*/
-	}	
+	}		
 
 }

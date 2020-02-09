@@ -119,7 +119,31 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->execute();		
 	}	
 
-	public static function changeExpenseCategoryName($newName)
+	public static function changeExpenseCategoryName($oldName, $newName)
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();	
+	}	
+
+	public static function changePaymentMethodName($oldName, $newName)
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE payment_methods_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();	
+	}		
+
+	public static function deleteExpenseCategory($name)
 	{
 		;
 		/*$user_id = $_SESSION['user_id'];
@@ -131,7 +155,8 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->execute();		*/
 	}	
 
-	public static function changePaymentMethodName($newName)
+
+	public static function deletePaymentMethod($name)
 	{
 		;
 		/*$user_id = $_SESSION['user_id'];
@@ -141,6 +166,6 @@ class ExpenseTransaction extends \Core\Model
 		$stmt = $db->prepare($sql);
 		
 		return $stmt->execute();		*/
-	}		
+	}			
 	
 }
