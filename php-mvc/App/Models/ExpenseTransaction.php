@@ -28,7 +28,7 @@ class ExpenseTransaction extends \Core\Model
 		$data_wydatku = date($_POST['data_wydatku']); 
 		$komentarz = $_POST['komentarz']; 
 		$user_id = $_SESSION['user_id'];	 //
-		$tablica2 = static::getExpenseId();
+		$tablica2 = static::getExpenseId($_POST['wydatek']);
 		$expense_category_assigned_to_user_id = (int)$tablica2['id'];
 		$tablica3 = static::getPaymentId();
 		$sposob_platnosci = (int)$tablica3['id']; 
@@ -46,10 +46,10 @@ class ExpenseTransaction extends \Core\Model
 			
 	}
 
-	public static function getExpenseId()
+	public static function getExpenseId($nazwa)
 	{
 		$user_id = $_SESSION['user_id'];
-		$kategoria_wydatku = $_POST['wydatek'];
+		$kategoria_wydatku = $nazwa;
 
 		$sql = "SELECT * FROM expenses_category_assigned_to_users WHERE name='$kategoria_wydatku' AND user_id='$user_id'";
 		$db = static::getDB();
@@ -153,16 +153,29 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->execute();	
 	}		
 
+	
 	public static function deleteExpenseCategory($name)
 	{
-		;
-		/*$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
+		$tablica = static::getExpenseId($name);
+		$expense_category_assigned_to_user_id = (int)$tablica['id'];
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO deleted_expenses SELECT * FROM expenses WHERE expense_category_assigned_to_user_id = '$expense_category_assigned_to_user_id' AND user_id = '$user_id'";
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
+		$stmt->execute();	
 		
-		return $stmt->execute();		*/
+		$sql2 = "DELETE FROM expenses WHERE expense_category_assigned_to_user_id = '$expense_category_assigned_to_user_id' AND user_id = '$user_id'";
+		$db = static::getDB();
+		$stmt = $db->prepare($sql2);
+		$stmt->execute();			
+		
+		$sql3 = "DELETE FROM expenses_category_assigned_to_users WHERE id = '$expense_category_assigned_to_user_id' AND user_id = '$user_id'";
+		$db = static::getDB();
+		$stmt = $db->prepare($sql3);
+		$stmt->execute();			
+		
+		return $stmt->execute();	
 	}	
 
 

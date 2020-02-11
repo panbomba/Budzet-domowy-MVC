@@ -29,7 +29,7 @@ class IncomeTransaction extends \Core\Model
 		$kwota = (double)$_POST['kwota']; //spradzic czy bedzie poprawnie sumowac
 		$data_przychodu = date($_POST['data_przychodu']); 
 		$komentarz = $_POST['koment'];
-		$tablica = static::getIncomeId();
+		$tablica = static::getIncomeId($_POST['przychod']);
 		$income_category_assigned_to_user_id = (int)$tablica['id'];
 
 		$sql = "INSERT INTO incomes (user_id, income_category_assigned_to_user_id, amount, date_of_income, income_comment)
@@ -44,10 +44,10 @@ class IncomeTransaction extends \Core\Model
 		return $stmt->execute();			
 	}
 	
-	public static function getIncomeId()
+	public static function getIncomeId($nazwa)
 	{
 		$user_id = $_SESSION['user_id'];
-		$kategoria_przychodu = $_POST['przychod'];
+		$kategoria_przychodu = $nazwa;
 
 		$sql = "SELECT * FROM incomes_category_assigned_to_users WHERE name='$kategoria_przychodu' AND user_id='$user_id'";
 		$db = static::getDB();
@@ -94,17 +94,26 @@ class IncomeTransaction extends \Core\Model
 
 	public static function deleteIncomeCategory($name)
 	{
-		;/*
-		//sprawdz czy istnieje juz kategoria 'usuniete kategorie'; jezeli nie to przypisz ja do uzytkownika
-		//skopiuj wszystkie dane transakcji z usuwana nazwa do nowej kategorii
-		//usun wszystko z usuwanej kategorii
+		$tablica = static::getIncomeId($name);
+		$income_category_assigned_to_user_id = (int)$tablica['id'];
 		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', 'usunieta_kategoria')";
+		$sql = "INSERT INTO deleted_incomes SELECT * FROM incomes WHERE income_category_assigned_to_user_id = '$income_category_assigned_to_user_id' AND user_id = '$user_id'";
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
+		$stmt->execute();	
 		
-		return $stmt->execute();*/
+		$sql2 = "DELETE FROM incomes WHERE income_category_assigned_to_user_id = '$income_category_assigned_to_user_id' AND user_id = '$user_id'";
+		$db = static::getDB();
+		$stmt = $db->prepare($sql2);
+		$stmt->execute();			
+		
+		$sql3 = "DELETE FROM incomes_category_assigned_to_users WHERE id = '$income_category_assigned_to_user_id' AND user_id = '$user_id'";
+		$db = static::getDB();
+		$stmt = $db->prepare($sql3);
+		$stmt->execute();			
+		
+		return $stmt->execute();	
 	}		
 
 }
