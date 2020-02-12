@@ -99,7 +99,11 @@
 								<br><br>								
 								{% for item in incomes_categories %}						
 									<b>{{ item.0 }}:</b> {{item.1}}<br>
-								{% endfor %}																
+								{% endfor %}
+								
+								{% if deleted_incomes > 0 %}	
+								<b>Przychody z usuniętych kategorii:</b> {{ deleted_incomes }}<br>
+								{% endif %}							
 								<br><b><span style="color: #5cb85c">Suma Przychodów:</span></b> {{ incomes }}						
 							</p>
 							
@@ -114,7 +118,11 @@
 								<br><br>
 								{% for item in expenses_categories %}						
 									<b>{{ item.0 }}:</b> {{item.1}}<br>
-								{% endfor %}								
+								{% endfor %}
+
+								{% if deleted_expenses != 0 %}	
+								<b>Wydatki z usuniętych kategorii:</b> {{ deleted_expenses }}<br>
+								{% endif %}											
 
 								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ expenses }}										
 							</p>

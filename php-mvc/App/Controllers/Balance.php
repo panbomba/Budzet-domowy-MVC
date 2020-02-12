@@ -43,11 +43,15 @@ class Balance extends \Core\Controller
 		
 		$tablica4 = BalanceModel::getSumOfExpenses($data_poczatkowa, $data_koncowa);
 		$tablica5 = BalanceModel::getSumOfIncomes($data_poczatkowa, $data_koncowa);		
+		$tablica6 = BalanceModel::getSumOfDeletedIncomes($data_poczatkowa, $data_koncowa);		
+		$tablica7 = BalanceModel::getSumOfDeletedExpenses($data_poczatkowa, $data_koncowa);		
 		$args = [];
 		$args['start_date'] = $data_poczatkowa;
 		$args['end_date'] = $data_koncowa;
-		$args['incomes'] = (double)$tablica5['SUM(amount)'];
-		$args['expenses'] = -(double)$tablica4['SUM(amount)'];
+		$args['deleted_expenses'] = (double)$tablica7['SUM(amount)'];
+		$args['deleted_incomes'] = (double)$tablica6['SUM(amount)'];
+		$args['incomes'] = ((double)$tablica5['SUM(amount)'] + (double)$tablica6['SUM(amount)']) ;
+		$args['expenses'] = -((double)$tablica4['SUM(amount)'] + (double)$tablica7['SUM(amount)']);				
 		$args['balance'] = ((double)$tablica5['SUM(amount)'] + -(double)$tablica4['SUM(amount)']);
 		$args['incomes_categories'] = BalanceModel::getIncomeCategories($data_poczatkowa, $data_koncowa);
 		$args['expenses_categories'] = BalanceModel::getExpenseCategories($data_poczatkowa, $data_koncowa);
