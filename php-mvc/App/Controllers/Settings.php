@@ -64,7 +64,19 @@ class Settings extends \Core\Controller
 				else if($_POST['akcja'] == 6)
 				{
 					ExpenseTransaction::deletePaymentMethod($_POST['usuwana_kategoria']);
-				}					
+				}	
+				else if($_POST['akcja'] == 7)
+				{
+					User::changeUserName($_POST['nowa_nazwa_uzytkownika']);
+				}		
+				else if($_POST['akcja'] == 8)
+				{
+					User::changeEmail($_POST['nowy_email']);
+				}		
+				else if($_POST['akcja'] == 9)
+				{
+					User::changePassword($_POST['nowe_haslo']); //TUTAJ POTWIERDZENIE STAREGO HASLA ORAZ PODWOJNE WPISANIE NOWEGO HASLA
+				}						
 		}
 
 		 //var_dump($_POST);

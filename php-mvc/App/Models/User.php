@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Flash;
 
 use PDO;
 
@@ -123,4 +124,47 @@ class User extends \Core\Model
 		return $stmt->fetch();	
 	}	
 
+	public static function changeUserName($newName)
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE users SET username = '$newName' WHERE id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();
+	}	
+
+	public static function changeEmail($newEmail)
+	{
+		if(static::findByEmail($newEmail))
+		{
+			Flash::addMessage('Wybrany adres email jest zajęty! Wybierz ponownie.', Flash::WARNING);		
+		}
+		else
+		{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE users SET email = '$newEmail' WHERE  id = '$user_id'"; //DODAC SPRAWDZENIE EMAILA
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		
+		}
+
+	}	
+	
+	public static function changePassword($newPassword)
+	{
+		/*$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE payment_methods_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();	*/
+	}		
 }
