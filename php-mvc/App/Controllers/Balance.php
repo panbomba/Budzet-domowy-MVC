@@ -52,7 +52,7 @@ class Balance extends \Core\Controller
 		$args['deleted_incomes'] = (double)$tablica6['SUM(amount)'];
 		$args['incomes'] = ((double)$tablica5['SUM(amount)'] + (double)$tablica6['SUM(amount)']) ;
 		$args['expenses'] = -((double)$tablica4['SUM(amount)'] + (double)$tablica7['SUM(amount)']);				
-		$args['balance'] = ((double)$tablica5['SUM(amount)'] + -(double)$tablica4['SUM(amount)']);
+		$args['balance'] = round(((double)$tablica5['SUM(amount)'] + -(double)$tablica4['SUM(amount)']),2);
 		$args['incomes_categories'] = BalanceModel::getIncomeCategories($data_poczatkowa, $data_koncowa);
 		$args['expenses_categories'] = BalanceModel::getExpenseCategories($data_poczatkowa, $data_koncowa);
 
