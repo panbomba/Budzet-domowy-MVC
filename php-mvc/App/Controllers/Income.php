@@ -12,7 +12,7 @@ class Income extends \Core\Controller
 	{
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();		
-		View::renderTemplate('Income/income.html', $args);
+		View::renderTemplate('Income/Income.html', $args);
 	}
 
 	public function createAction() //czy powinienem przekazac id zalogowanego 
@@ -20,6 +20,6 @@ class Income extends \Core\Controller
 		IncomeTransaction::saveNewIncome();
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();		
-		View::renderTemplate('Income/income.html', $args);
+		View::renderTemplate('Income/Income.html', $args);
 	}
 }
