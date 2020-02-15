@@ -20,6 +20,11 @@ class Expense extends \Core\Controller
 	public function createAction()
 	{	
 		ExpenseTransaction::saveNewExpense();
+		$args = [];
+		$args['exp_cat_assigned'] = ExpenseTransaction::getExpenseCategoriesAssignedToUser();
+		$args['pay_meth_assigned'] = ExpenseTransaction::getPaymentMethodsAssignedToUser();
+		
+		View::renderTemplate('Expense/expense.html', $args);		
 	}
 
 	

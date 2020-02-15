@@ -39,23 +39,47 @@ class Settings extends \Core\Controller
 				}	
 		}
 		
-		if(isset($_POST['edycja']))
+		if(isset($_POST['akcja']))
 		{
-				if($_POST['edycja'] == 1)
+				if($_POST['akcja'] == 1)
 				{
-					IncomeTransaction::changeIncomeCategoryName($_POST['nowa_nazwa']);
+					IncomeTransaction::changeIncomeCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
 				}
-				else if($_POST['edycja'] == 2)
+				else if($_POST['akcja'] == 2)
 				{
-					ExpenseTransaction::changeExpenseCategoryName($_POST['nowa_nazwa']);
+					ExpenseTransaction::changeExpenseCategoryName($_POST['stara_nazwa'], $_POST['nowa_nazwa'], $_POST['limit']);
 				}
-				else if($_POST['edycja'] == 3)
+				else if($_POST['akcja'] == 3)
 				{
-					ExpenseTransaction::changePaymentMethodName($_POST['nowa_nazwa']);
+					ExpenseTransaction::changePaymentMethodName($_POST['stara_nazwa'], $_POST['nowa_nazwa']);
+				}
+				else if($_POST['akcja'] == 4)
+				{
+					IncomeTransaction::deleteIncomeCategory($_POST['usuwana_kategoria']);
 				}	
+				else if($_POST['akcja'] == 5)
+				{
+					ExpenseTransaction::deleteExpenseCategory($_POST['usuwana_kategoria']);
+				}					
+				else if($_POST['akcja'] == 6)
+				{
+					ExpenseTransaction::deletePaymentMethod($_POST['usuwana_kategoria']);
+				}	
+				else if($_POST['akcja'] == 7)
+				{
+					User::changeUserName($_POST['nowa_nazwa_uzytkownika']);
+				}		
+				else if($_POST['akcja'] == 8)
+				{
+					User::changeEmail($_POST['nowy_email']);
+				}		
+				else if($_POST['akcja'] == 9)
+				{
+					User::changePassword($_POST['stare_haslo'], $_POST['nowe_haslo'], $_POST['nowe_haslo2']); //TUTAJ POTWIERDZENIE STAREGO HASLA ORAZ PODWOJNE WPISANIE NOWEGO HASLA
+				}						
 		}
 
-		 var_dump($_POST);
+		 //var_dump($_POST);
 
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();				

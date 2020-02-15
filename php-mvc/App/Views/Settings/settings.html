@@ -112,7 +112,10 @@
     </div>
     <div id="collapseFour" class="collapse" data-parent="#accordion">
       <div class="card-body">
-        Tutaj możesz edytować Twoje dane
+
+												<div id="one_line" align="left"><b>Zmień nazwę użytkownika<span style="float: right"><a class="small_icon"  type="button"  data-toggle="modal" data-target="#modal-edycja-nazwa-uzytkownika"><i class="icon-pencil"></i></a></span></div><br>
+												<div id="one_line" align="left"><b>Edytuj adres e-mail<span style="float: right"><a class="small_icon"  type="button"  data-toggle="modal" data-target="#modal-edycja-email"><i class="icon-pencil"></i></a></span></div><br>
+												<div id="one_line" align="left"><b>Zmień hasło<span style="float: right"><a class="small_icon"  type="button"  data-toggle="modal" data-target="#modal-edycja-haslo"><i class="icon-pencil"></i></a></span></div>												
       </div>
     </div>
   </div>
@@ -209,7 +212,7 @@
 											{% endfor %}											
 										</select>
 									<br><br>											
-										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa" required>
 								  </div>	
 								  
 								  <div class="modal-footer">								  
@@ -240,8 +243,9 @@
 												<option value="{{ item.0 }}"> {{ item.0 }}</option>
 											{% endfor %}											
 										</select>
-									<br><br>											
-										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+									<br><br>								
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa"><br>
+										<input class="form-control" type="number" name="limit" min="0" step="0.01" placeholder="Ustaw miesięczny limit">												
 								  </div>	
 								  
 								  <div class="modal-footer">								  
@@ -273,7 +277,7 @@
 											{% endfor %}											
 										</select>
 									<br><br>											
-										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa">
+										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa" required>
 								  </div>	
 								  
 								  <div class="modal-footer">								  
@@ -376,7 +380,91 @@
 								</div>
 								</div>
 							 </div>
+						</div>	
+
+										<!-- Modal edycja nazwa uzytkownika-->
+						<div class="modal fade" id="modal-edycja-nazwa-uzytkownika" tabindex="-1" role="dialog" aria-labelledby="modal-edycja-nazwa-uzytkownika" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Zmiana nazwy użytkownika</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Settings/create" method="post">
+								  
+								  <div class="modal-body">
+										<input class="form-control" type="text" disabled selected value="{{ current_user.username }} "> 																	
+									<br><br>											
+										<input class="form-control" type="text" name="nowa_nazwa_uzytkownika" placeholder="Nowa nazwa użytkownika" required>
+								  </div>	
+								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="7" name="akcja" class="btn btn-success">Potwierdzam</button>
+									</form>
+								</div>
+								</div>
+							 </div>
+						</div>	
+						
+										<!-- Modal edycja adres email-->
+						<div class="modal fade" id="modal-edycja-email" tabindex="-1" role="dialog" aria-labelledby="modal-edycja-email" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Zmiana adresu email</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Settings/create" method="post">
+								  
+								  <div class="modal-body">
+										<input class="form-control" type="text" disabled selected value="{{ current_user.email }} "> 																	
+									<br><br>											
+										<input class="form-control" type="email" name="nowy_email" placeholder="Nowy adres email" required>
+								  </div>	
+								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="8" name="akcja" class="btn btn-success">Potwierdzam</button>
+									</form>
+								</div>
+								</div>
+							 </div>
+						</div>
+
+										<!-- Modal edycja haslo-->
+						<div class="modal fade" id="modal-edycja-haslo" tabindex="-1" role="dialog" aria-labelledby="modal-edycja-h" aria-hidden="true">
+							 <div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Zmiana hasła</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+								  </div>
+								  <form action="/Settings/create" method="post">
+								  
+								  <div class="modal-body">
+										<input class="form-control" type="password" name="stare_haslo" placeholder="Hasło" required>
+									<br><br>		
+										<input class="form-control" type="password" name="nowe_haslo" placeholder="Nowe hasło" required>
+									<br><br>											
+										<input class="form-control" type="password" name="nowe_haslo2" placeholder="Potwierdź nowe hasło" required>
+								  </div>	
+								  
+								  <div class="modal-footer">								  
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+									<button type="submit" value="9" name="akcja" class="btn btn-success">Zmień hasło</button>
+									</form>
+								</div>
+								</div>
+							 </div>
 						</div>							
+						
 			</section>
 			
 		</main>

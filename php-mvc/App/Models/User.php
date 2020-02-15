@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Flash;
 
 use PDO;
 
@@ -123,4 +124,74 @@ class User extends \Core\Model
 		return $stmt->fetch();	
 	}	
 
+	public static function changeUserName($newName)
+	{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE users SET username = '$newName' WHERE id = '$user_id'";
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();
+	}	
+
+	public static function changeEmail($newEmail)
+	{
+		if(static::findByEmail($newEmail))
+		{
+			Flash::addMessage('Wybrany adres email jest zajęty! Wybierz ponownie.', Flash::WARNING);		
+		}
+		else
+		{
+		$user_id = $_SESSION['user_id'];
+		
+		$sql = "UPDATE users SET email = '$newEmail' WHERE  id = '$user_id'"; //DODAC SPRAWDZENIE EMAILA
+		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);
+		
+		return $stmt->execute();		
+		}
+
+	}	
+	
+	public static function getUserPassword($userId)
+	{		
+		$sql = "SELECT password FROM users WHERE  id = '$userId'"; 
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);	
+		$stmt->execute();		
+		return $stmt->fetch();			
+	}
+	
+	public static function changePassword($password, $newPassword, $newPassword2)
+	{
+		$user_id = $_SESSION['user_id'];
+		$hash = static::getUserPassword($user_id);
+		if(!password_verify($password, $hash['password']))
+		{
+			Flash::addMessage('Podane hasło jest niepoprawne', Flash::WARNING);		
+		}
+		else if($newPassword != $newPassword2)
+		{
+			Flash::addMessage('Podane hasła są różne', Flash::WARNING);					
+		}
+		else if((strlen($newPassword)<8) || (strlen($newPassword)>255))
+		{
+			Flash::addMessage('Hasło powinno mieć przynajmniej 8 znaków', Flash::WARNING);					
+		}		
+		
+		else if((password_verify($password, $hash['password'])) && ($newPassword == $newPassword2))
+		{			
+	Flash::addMessage('Hasło zostało zmienione', Flash::SUCCESS);
+			$newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+			$sql = "UPDATE users SET password = '$newPasswordHash' WHERE  id = '$user_id'";		
+			$db = static::getDB();
+			$stmt = $db->prepare($sql);			
+			return $stmt->execute();				
+			
+		}
+
+	}		
 }
