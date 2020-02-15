@@ -69,15 +69,35 @@ class IncomeTransaction extends \Core\Model
 		return $stmt->fetchAll();
 	}		
 	
-	public static function addNewIncomeCategory($newCategory)
+	public static function checkIfCategoryExists($category)
 	{
 		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
-		
+		$sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = '$user_id' AND lower(name) = lower('$category')";	
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
+		$stmt = $db->prepare($sql);		
+		$stmt->execute();		
 		
-		return $stmt->execute();		
+		return $stmt->fetchAll();
+	}
+	
+	public static function addNewIncomeCategory($newCategory)
+	{
+		$check = static::checkIfCategoryExists($newCategory);
+		if(empty($check))
+		{
+			$user_id = $_SESSION['user_id'];
+			$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
+			
+			$db = static::getDB();
+			$stmt = $db->prepare($sql);
+			
+			return $stmt->execute();				
+		}		
+		else if(!empty($check))
+		{
+			Flash::addMessage('Wybrana kategoria już istnieje!', Flash::WARNING);					
+		}
+	
 	}
 
 	public static function changeIncomeCategoryName($oldName, $newName)
