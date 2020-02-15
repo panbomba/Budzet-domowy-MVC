@@ -139,23 +139,33 @@ class ExpenseTransaction extends \Core\Model
 			Flash::addMessage('Wybrany sposób płatności już istnieje!', Flash::WARNING);					
 		}			
 	}	
-
-	public static function changeExpenseCategoryName($oldName, $newName, $limit)
+	
+	public static function setLimit($oldName, $limit)
 	{
 		$user_id = $_SESSION['user_id'];		
-		if($newName !="")
+		if($limit !=0)
+		{
+		$sql = "UPDATE expenses_category_assigned_to_users SET limity = '$limit' WHERE name = '$oldName' AND user_id = '$user_id'";		
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);		
+		$stmt->execute();	
+		Flash::addMessage('Limit został zmieniony', Flash::SUCCESS);
+		return $stmt->execute();				
+		}
+	}
+	
+	public static function changeExpenseCategoryName($oldName, $newName, $limit)
+	{
+		static::setLimit($oldName, $limit);
+		$user_id = $_SESSION['user_id'];		
+		if(!empty($newName))
 		{
 		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
+		$stmt = $db->prepare($sql);	
+		Flash::addMessage('Nazwa kategorii została zmieniona', Flash::SUCCESS);	
+		return $stmt->execute();				
 		}		
-		if($limit !=0)
-		{
-		$sql2 = "UPDATE expenses_category_assigned_to_users SET limity = '$limit' WHERE name = '$oldName' AND user_id = '$user_id'";		
-		$db = static::getDB();
-		$stmt = $db->prepare($sql2);					
-		}		
-		return $stmt->execute();		
 	}	
 
 	public static function changePaymentMethodName($oldName, $newName)
@@ -167,7 +177,6 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->execute();	
 	}		
 
-	
 	public static function deleteExpenseCategory($name)
 	{
 		$tablica = static::getExpenseId($name);
@@ -191,7 +200,6 @@ class ExpenseTransaction extends \Core\Model
 		
 		return $stmt->execute();	
 	}	
-
 
 	public static function deletePaymentMethod($name)
 	{
