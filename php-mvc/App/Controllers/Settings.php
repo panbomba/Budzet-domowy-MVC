@@ -75,7 +75,7 @@ class Settings extends \Core\Controller
 				}		
 				else if($_POST['akcja'] == 9)
 				{
-					User::changePassword($_POST['nowe_haslo']); //TUTAJ POTWIERDZENIE STAREGO HASLA ORAZ PODWOJNE WPISANIE NOWEGO HASLA
+					User::changePassword($_POST['stare_haslo'], $_POST['nowe_haslo'], $_POST['nowe_haslo2']); //TUTAJ POTWIERDZENIE STAREGO HASLA ORAZ PODWOJNE WPISANIE NOWEGO HASLA
 				}						
 		}
 

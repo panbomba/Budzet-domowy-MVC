@@ -387,7 +387,7 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edycja</h5>
+										<h5 class="modal-title">Zmiana nazwy użytkownika</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -414,7 +414,7 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edycja</h5>
+										<h5 class="modal-title">Zmiana adresu email</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -441,7 +441,7 @@
 							 <div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edycja</h5>
+										<h5 class="modal-title">Zmiana hasła</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -449,19 +449,16 @@
 								  <form action="/Settings/create" method="post">
 								  
 								  <div class="modal-body">
-										<select class="form-control" name="stara_nazwa">
-										<option disabled selected value> -- wybierz -- </option>										
-											{% for item in pay_meth_assigned %}						
-												<option value="{{ item.0 }}"> {{ item.0 }}</option>
-											{% endfor %}											
-										</select>
+										<input class="form-control" type="password" name="stare_haslo" placeholder="Hasło" required>
+									<br><br>		
+										<input class="form-control" type="password" name="nowe_haslo" placeholder="Nowe hasło" required>
 									<br><br>											
-										<input class="form-control" type="text" name="nowa_nazwa" placeholder="Nowa nazwa" required>
+										<input class="form-control" type="password" name="nowe_haslo2" placeholder="Potwierdź nowe hasło" required>
 								  </div>	
 								  
 								  <div class="modal-footer">								  
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-									<button type="submit" value="3" name="akcja" class="btn btn-success">Potwierdzam</button>
+									<button type="submit" value="9" name="akcja" class="btn btn-success">Zmień hasło</button>
 									</form>
 								</div>
 								</div>
