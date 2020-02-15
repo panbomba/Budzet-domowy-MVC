@@ -37,24 +37,18 @@ class ExpenseTransaction extends \Core\Model
 		VALUES ('$user_id', '$expense_category_assigned_to_user_id', '$sposob_platnosci', '$kwota', '$data_wydatku', '$komentarz')";
 		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		Flash::addMessage('Transakcja dodana pomyślnie.');		
-
-		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
-		return $stmt->execute();		
-			
+		return $stmt->execute();					
 	}
 
 	public static function getExpenseId($nazwa)
 	{
 		$user_id = $_SESSION['user_id'];
 		$kategoria_wydatku = $nazwa;
-
 		$sql = "SELECT * FROM expenses_category_assigned_to_users WHERE name='$kategoria_wydatku' AND user_id='$user_id'";
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		$stmt->execute();		
 		return $stmt->fetch();	
 	}
@@ -63,11 +57,9 @@ class ExpenseTransaction extends \Core\Model
 	{
 		$user_id = $_SESSION['user_id'];
 		$sposob_platnosci = $_POST['sposob'];
-
 		$sql = "SELECT * FROM payment_methods_assigned_to_users WHERE name='$sposob_platnosci' AND user_id='$user_id'";
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		$stmt->execute();		
 		return $stmt->fetch();	
 	}	
@@ -79,8 +71,7 @@ class ExpenseTransaction extends \Core\Model
 		$sql = "SELECT name FROM expenses_category_assigned_to_users WHERE user_id =  '$user_id'";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		$stmt->execute();		
-		
+		$stmt->execute();				
 		return $stmt->fetchAll();
 	}	
 
@@ -91,65 +82,88 @@ class ExpenseTransaction extends \Core\Model
 		$sql = "SELECT name FROM payment_methods_assigned_to_users WHERE user_id =  '$user_id'";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		$stmt->execute();		
-		
+		$stmt->execute();				
 		return $stmt->fetchAll();
 	}			
+
+	public static function checkIfCategoryExists($category)
+	{
+		$user_id = $_SESSION['user_id'];
+		$sql = "SELECT * FROM expenses_category_assigned_to_users WHERE user_id = '$user_id' AND lower(name) = lower('$category')";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);		
+		$stmt->execute();			
+		return $stmt->fetchAll();
+	}
 	
 	public static function addNewExpenseCategory($newCategory)
 	{
+		$check = static::checkIfCategoryExists($newCategory);
+		if(empty($check))
+		{
 		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";
-		
+		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
-		return $stmt->execute();		
+		$stmt = $db->prepare($sql);		
+		return $stmt->execute();					
+		}	
+		else if(!empty($check))
+		{
+			Flash::addMessage('Wybrana kategoria już istnieje!', Flash::WARNING);					
+		}		
+	}
+
+	public static function checkIfPayMethodExists($method)
+	{
+		$user_id = $_SESSION['user_id'];
+		$sql = "SELECT * FROM payment_methods_assigned_to_users WHERE user_id = '$user_id' AND lower(name) = lower('$method')";	
+		$db = static::getDB();
+		$stmt = $db->prepare($sql);		
+		$stmt->execute();			
+		return $stmt->fetchAll();
 	}
 
 	public static function addNewPaymentMethod($newMethod)
 	{
+		$check = static::checkIfPayMethodExists($newMethod);
+		if(empty($check))		
+		{
 		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
-		
+		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
-		return $stmt->execute();		
+		$stmt = $db->prepare($sql);		
+		return $stmt->execute();					
+		}
+		else if(!empty($check))
+		{
+			Flash::addMessage('Wybrany sposób płatności już istnieje!', Flash::WARNING);					
+		}			
 	}	
 
 	public static function changeExpenseCategoryName($oldName, $newName, $limit)
 	{
-		$user_id = $_SESSION['user_id'];
-		
+		$user_id = $_SESSION['user_id'];		
 		if($newName !="")
 		{
-		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
-		
+		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		}
-		
+		}		
 		if($limit !=0)
 		{
-		$sql2 = "UPDATE expenses_category_assigned_to_users SET limity = '$limit' WHERE name = '$oldName' AND user_id = '$user_id'";
-		
+		$sql2 = "UPDATE expenses_category_assigned_to_users SET limity = '$limit' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql2);					
-		}
-		
+		}		
 		return $stmt->execute();		
 	}	
 
 	public static function changePaymentMethodName($oldName, $newName)
 	{
-		$user_id = $_SESSION['user_id'];
-		
-		$sql = "UPDATE payment_methods_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
-		
+		$user_id = $_SESSION['user_id'];		
+		$sql = "UPDATE payment_methods_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		return $stmt->execute();	
 	}		
 
@@ -181,14 +195,12 @@ class ExpenseTransaction extends \Core\Model
 
 	public static function deletePaymentMethod($name)
 	{
-		;
-		/*$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";
-		
+		$user_id = $_SESSION['user_id'];
+		$sql3 = "DELETE FROM payment_methods_assigned_to_users WHERE name = '$name' AND user_id = '$user_id'";
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
-		return $stmt->execute();		*/
+		$stmt = $db->prepare($sql3);
+		$stmt->execute();					
+		return $stmt->execute();			
 	}			
 	
 }
