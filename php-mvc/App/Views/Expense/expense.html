@@ -50,10 +50,10 @@
 
 						<h1>Dodaj wydatek</h1>
 								<form action="/Expense/create" method="post">
-									<label> Kwota    <input type="number" step="0.01" name="kwota" required></label>
-										<br><br>
-									<label>Data     <input type="date" name="data_wydatku" value="YYYY-MM-DD" required></label>
-										<br><br>
+									<input class="form-control" type="number" step="0.01" name="kwota" required placeholder="Kwota">
+										<br>
+									<input class="form-control" type="date" name="data_wydatku" value="YYYY-MM-DD" required>
+										<br>
 
 									<fieldset class="radio">
 										<legend>Kategoria</legend>										
@@ -62,17 +62,16 @@
 											{% endfor %}		
 									</fieldset>
 									<br>
-
-									<label for="okres">Sposób Płatności</label>
-										<select name="sposob" id="okres">
+									
+										<select class="form-control"name="sposob" id="okres">
+												<option disabled selected value> -- Sposób płatności -- </option>										
 											{% for item in pay_meth_assigned %}						
 												<option value="{{ item.0 }}"> {{ item.0 }}</option>
 											{% endfor %}											
 										</select>
-									<br><br>									
+									<br>								
 
-									<div><label for="komentarz">Dodatkowe komentarze</label></div>
-										<textarea name="komentarz" id="komentarz" rows="4" cols="50"></textarea>
+										<textarea class="form-control" name="komentarz" id="komentarz" rows="4" cols="50" placeholder="Komentarz"></textarea>
 									<br><br>
 									<input type="submit" style="background-color: #5cb85c; color: white" value="Dodaj wydatek">
 									<br><br>
