@@ -13,7 +13,6 @@ class Expense extends \Core\Controller
 		$args = [];
 		$args['exp_cat_assigned'] = ExpenseTransaction::getExpenseCategoriesAssignedToUser();
 		$args['pay_meth_assigned'] = ExpenseTransaction::getPaymentMethodsAssignedToUser();
-		
 		View::renderTemplate('Expense/expense.html', $args);
 	}
 	

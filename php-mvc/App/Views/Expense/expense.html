@@ -58,7 +58,11 @@
 									<fieldset class="radio">
 										<legend>Kategoria</legend>										
 											{% for item in exp_cat_assigned %}						
-												<div><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label></div>
+												<div><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label> 
+												{% if item.1 > 0 %}	
+												<span style="float: right">Limit:
+												<b>{{ item.1 }}</b></span> </div>
+												{% endif %}
 											{% endfor %}		
 									</fieldset>
 									<br>

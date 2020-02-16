@@ -239,8 +239,9 @@
 								  <div class="modal-body">
 										<select class="form-control" name="stara_nazwa">
 										<option disabled selected value> -- wybierz -- </option>										
-											{% for item in exp_cat_assigned %}						
-												<option value="{{ item.0 }}"> {{ item.0 }}</option>
+											{% for item in exp_cat_assigned %}		
+											
+												<option value="{{ item.0 }}"> {{ item.0 }} {% if item.1 > 0 %}    (Obecny limit: {{ item.1 }}) {% endif %}</option>
 											{% endfor %}											
 										</select>
 									<br><br>								
