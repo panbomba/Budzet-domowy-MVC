@@ -90,7 +90,7 @@ class IncomeTransaction extends \Core\Model
 			
 			$db = static::getDB();
 			$stmt = $db->prepare($sql);
-			
+			Flash::addMessage('Kategoria '.$newCategory. ' została dodana do Twojego profilu. ', Flash::SUCCESS);				
 			return $stmt->execute();				
 		}		
 		else if(!empty($check))
@@ -108,7 +108,7 @@ class IncomeTransaction extends \Core\Model
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		
+		Flash::addMessage("Zmieniłeś nazwę $oldName na $newName", Flash::SUCCESS);		
 		return $stmt->execute();	
 	}
 
@@ -132,7 +132,7 @@ class IncomeTransaction extends \Core\Model
 		$db = static::getDB();
 		$stmt = $db->prepare($sql3);
 		$stmt->execute();			
-		
+		Flash::addMessage('Kategoria '.$name. ' została usunięta. ', Flash::SUCCESS);				
 		return $stmt->execute();	
 	}		
 

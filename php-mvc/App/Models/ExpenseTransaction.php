@@ -101,11 +101,12 @@ class ExpenseTransaction extends \Core\Model
 		$check = static::checkIfCategoryExists($newCategory);
 		if(empty($check))
 		{
-		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";		
-		$db = static::getDB();
-		$stmt = $db->prepare($sql);		
-		return $stmt->execute();					
+			$user_id = $_SESSION['user_id'];
+			$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) VALUES ('$user_id', '$newCategory')";		
+			$db = static::getDB();
+			$stmt = $db->prepare($sql);	
+			Flash::addMessage('Kategoria '.$newCategory. ' została daodana do Twojego profilu. ', Flash::SUCCESS);			
+			return $stmt->execute();					
 		}	
 		else if(!empty($check))
 		{
@@ -128,11 +129,12 @@ class ExpenseTransaction extends \Core\Model
 		$check = static::checkIfPayMethodExists($newMethod);
 		if(empty($check))		
 		{
-		$user_id = $_SESSION['user_id'];
-		$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";		
-		$db = static::getDB();
-		$stmt = $db->prepare($sql);		
-		return $stmt->execute();					
+			$user_id = $_SESSION['user_id'];
+			$sql = "INSERT INTO payment_methods_assigned_to_users (user_id, name) VALUES ('$user_id', '$newMethod')";		
+			$db = static::getDB();
+			$stmt = $db->prepare($sql);
+			Flash::addMessage('Metoda płatności '.$newMethod. ' została dodana do Twojego profilu. ', Flash::SUCCESS);			
+			return $stmt->execute();					
 		}
 		else if(!empty($check))
 		{
@@ -149,7 +151,7 @@ class ExpenseTransaction extends \Core\Model
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);		
 		$stmt->execute();	
-		Flash::addMessage('Limit został zmieniony', Flash::SUCCESS);
+		Flash::addMessage('Limit został zmieniony na '.$limit, Flash::SUCCESS);
 		return $stmt->execute();				
 		}
 	}
@@ -163,7 +165,7 @@ class ExpenseTransaction extends \Core\Model
 		$sql = "UPDATE expenses_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);	
-		Flash::addMessage('Nazwa kategorii została zmieniona', Flash::SUCCESS);	
+		Flash::addMessage("Zmieniono nazwę $oldName na $newName", Flash::SUCCESS);		
 		return $stmt->execute();				
 		}		
 	}	
@@ -173,7 +175,8 @@ class ExpenseTransaction extends \Core\Model
 		$user_id = $_SESSION['user_id'];		
 		$sql = "UPDATE payment_methods_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);		
+		$stmt = $db->prepare($sql);
+		Flash::addMessage("Zmieniłeś nazwę $oldName na $newName", Flash::SUCCESS);				
 		return $stmt->execute();	
 	}		
 
@@ -197,7 +200,7 @@ class ExpenseTransaction extends \Core\Model
 		$db = static::getDB();
 		$stmt = $db->prepare($sql3);
 		$stmt->execute();			
-		
+		Flash::addMessage('Kategoria '.$name. ' została usunięta. ', Flash::SUCCESS);		
 		return $stmt->execute();	
 	}	
 
@@ -207,7 +210,8 @@ class ExpenseTransaction extends \Core\Model
 		$sql3 = "DELETE FROM payment_methods_assigned_to_users WHERE name = '$name' AND user_id = '$user_id'";
 		$db = static::getDB();
 		$stmt = $db->prepare($sql3);
-		$stmt->execute();					
+		$stmt->execute();				
+		Flash::addMessage('Sposób płatności '.$name. ' został usunięty. ', Flash::SUCCESS);			
 		return $stmt->execute();			
 	}			
 	
