@@ -25,6 +25,12 @@ class Expense extends \Core\Controller
 		
 		View::renderTemplate('Expense/expense.html', $args);		
 	}
+	
+	public function ajaxAction()
+	{
+	//tutaj jakas zmienna, ktora bedzie zalezec od kategorii, wpisanej kwoty oraz limitu.
+    echo "pipipi";
+	}
 
 	
 }

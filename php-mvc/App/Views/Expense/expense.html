@@ -8,6 +8,28 @@
 
 {% endif %}	
 
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function(){
+  $("#btn").click(function(){
+    $.ajax({url: "/Expense/ajax", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+});
+</script>
+
+</head>
+<body>
+  <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button id="btn">Get External Content</button>
+	
+	
 		<nav class="navbar navbar-expand-md bg-wlasne navbar-dark justify-content-center">
 		  <div class="container-fluid">
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
@@ -47,21 +69,21 @@
 		<main>
 			<section>
 				<div class="wydatek">
-
 						<h1>Dodaj wydatek</h1>
 								<form action="/Expense/create" method="post">
-									<input class="form-control" type="number" step="0.01" name="kwota" required placeholder="Kwota">
+									<input onkeyup="showHint(this.value)" class="form-control" type="number" step="0.01" name="kwota" required placeholder="Kwota">
 										<br>
 									<input class="form-control" type="date" name="data_wydatku" value="YYYY-MM-DD" required>
 										<br>
 
 									<fieldset class="radio">
-										<legend>Kategoria</legend>										
+										<legend>Kategoria</legend>							
 											{% for item in exp_cat_assigned %}						
 												<div><label><input type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label> 
 												{% if item.1 > 0 %}	
 												<span style="float: right">Limit:
-												<b>{{ item.1 }}</b></span> </div>
+												<b>{{ item.1 }}</b></span>
+												</div>
 												{% endif %}
 											{% endfor %}		
 									</fieldset>
