@@ -28,8 +28,15 @@ class Expense extends \Core\Controller
 	
 	public function ajaxAction()
 	{
-	//tutaj jakas zmienna, ktora bedzie zalezec od kategorii, wpisanej kwoty oraz limitu.
-    echo "pipipi";
+	echo $_POST['radioValue'];	
+	echo '<br>';
+	echo $_POST['amountValue'];	
+	echo '<br>';
+	echo $_POST['dateValue'];	
+	echo '<br>';
+	//tutaj sprawdzenie - jezeli jest limit ustawiony to wysylamy zapytanie
+	//funkcja sprawdz czy limit
+	//wyslij 
 	}
 
 	
