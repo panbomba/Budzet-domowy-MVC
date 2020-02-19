@@ -14,27 +14,12 @@
   crossorigin="anonymous"></script>
 
 <script>
-
     $(document).ready(function(){
-    /*    $(".radio1").change(function(){ //tutaj funkcja jak jest wpisywanie kwoty
+        $("#kwota").keyup(function(){ 
             var radioValue = $("input[name='wydatek']:checked").val();
 			var amountValue = $("input[name='kwota']").val();
 			var dateValue = $("input[name='data_wydatku']").val();
-            if((radioValue) && (amountValue) && (dateValue)){ // po sprawdzeniu ze wszytskie sa wybrane nalezy przeslac zapytanie do php
-                //alert("Your are a - " + radioValue + " " + amountValue + " " + dateValue);
-				$("#ajax_response").load("/Expense/ajax", {
-				radioValue: radioValue,
-				amountValue: amountValue,
-				dateValue: dateValue			
-				});				
-            }
-        });*/
-        $("#kwota").keyup(function(){ //tutaj funkcja jak jest wpisywanie kwoty
-            var radioValue = $("input[name='wydatek']:checked").val();
-			var amountValue = $("input[name='kwota']").val();
-			var dateValue = $("input[name='data_wydatku']").val();
-            if((radioValue) && (amountValue) && (dateValue)){ // po sprawdzeniu ze wszytskie sa wybrane nalezy przeslac zapytanie do php
-                //alert("Your are a - " + radioValue + " " + amountValue + " " + dateValue);
+            if((radioValue) && (amountValue) && (dateValue)){ 
 				$("#ajax_response").load("/Expense/ajax", {
 				radioValue: radioValue,
 				amountValue: amountValue,
@@ -43,12 +28,11 @@
             }
         });	
 
-        $("#kwota").mousedown(function(){ //tutaj funkcja jak jest wpisywanie kwoty
+        $("#kwota").mousedown(function(){ 
             var radioValue = $("input[name='wydatek']:checked").val();
 			var amountValue = $("input[name='kwota']").val();
 			var dateValue = $("input[name='data_wydatku']").val();
-            if((radioValue) && (amountValue) && (dateValue)){ // po sprawdzeniu ze wszytskie sa wybrane nalezy przeslac zapytanie do php
-                //alert("Your are a - " + radioValue + " " + amountValue + " " + dateValue);
+            if((radioValue) && (amountValue) && (dateValue)){ 
 				$("#ajax_response").load("/Expense/ajax", {
 				radioValue: radioValue,
 				amountValue: amountValue,
@@ -57,24 +41,18 @@
             }
         });	
 		
-        $("#data_wydatku, .radio1").change(function(){ //tutaj funkcja jak jest wpisywanie kwoty
+        $("#data_wydatku, .radio1").change(function(){
             var radioValue = $("input[name='wydatek']:checked").val();
 			var amountValue = $("input[name='kwota']").val();
 			var dateValue = $("input[name='data_wydatku']").val();
-            if((radioValue) && (amountValue) && (dateValue)){ // po sprawdzeniu ze wszytskie sa wybrane nalezy przeslac zapytanie do php
-                //alert("Your are a - " + radioValue + " " + amountValue + " " + dateValue);
+            if((radioValue) && (amountValue) && (dateValue)){
 				$("#ajax_response").load("/Expense/ajax", {
 				radioValue: radioValue,
 				amountValue: amountValue,
 				dateValue: dateValue			
 				});				
             }
-        });			
-
-		
-		
-		
-		
+        });					
     });
 </script>
 
@@ -127,9 +105,8 @@
 										<br>
 									<input id ="data_wydatku" class="form-control" type="date" name="data_wydatku" value="YYYY-MM-DD" required>
 										<br>
-
 									<fieldset class="radio">
-										<legend>Kategoria</legend><span class="ajax_response"></span>							
+										<legend>Kategoria</legend>					
 											{% for item in exp_cat_assigned %}						
 												<div><label><input class="radio1" type="radio" value="{{ item.0 }}" name="wydatek" required> {{ item.0 }}</label> 
 												{% if item.1 > 0 %}	
@@ -139,8 +116,7 @@
 												{% endif %}
 											{% endfor %}		
 									</fieldset>
-									<br>
-									
+									<br>								
 										<select class="form-control"name="sposob" id="okres">
 												<option disabled selected value> -- Sposób płatności -- </option>										
 											{% for item in pay_meth_assigned %}						
@@ -148,7 +124,6 @@
 											{% endfor %}											
 										</select>
 									<br>								
-
 										<textarea class="form-control" name="komentarz" id="komentarz" rows="4" cols="50" placeholder="Komentarz"></textarea>
 									<br><br>
 									<input type="submit" style="background-color: #5cb85c; color: white" value="Dodaj wydatek">
