@@ -15,7 +15,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#kwota").keyup(function(){ 
+        $("#kwota, #data_wydatku").keyup(function(){ 
             var radioValue = $("input[name='wydatek']:checked").val();
 			var amountValue = $("input[name='kwota']").val();
 			var dateValue = $("input[name='data_wydatku']").val();
