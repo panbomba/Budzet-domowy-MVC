@@ -37,6 +37,8 @@ class Expense extends \Core\Controller
 	//tutaj sprawdzenie - jezeli jest limit ustawiony to wysylamy zapytanie
 	//funkcja sprawdz czy limit
 	//wyslij 
+	//ExpenseTransaction::checkIfLimitSetup(); //jezeli tak to go podaj i zrealiuj druga funkcje
+	//ExpenseTransaction::checkMonthlyExpensesForSetCategory($category, $date);
 	}
 
 	
