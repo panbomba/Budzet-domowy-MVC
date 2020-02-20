@@ -45,7 +45,7 @@ class Expense extends \Core\Controller
 			echo '<br>';
 			if(($dotychczas_wydane + $selected_amount)> $category_limit)
 			{
-				echo '<span style="color:tomato"><b>Uważaj, ten wydatek spowoduje przekroczenie ustalonego limitu o '. ($dotychczas_wydane + $selected_amount - $category_limit). '</b></span>' ;
+				echo '<span style="color:tomato"><b>Uważaj, ten wydatek spowoduje przekroczenie ustalonego limitu o '.round(($dotychczas_wydane + $selected_amount - $category_limit),2). '</b></span>' ;
 			}
 			else if (($dotychczas_wydane + $selected_amount) < $category_limit)
 			{
