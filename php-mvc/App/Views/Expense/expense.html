@@ -39,9 +39,9 @@
 				dateValue: dateValue			
 				});				
             }
-        });	
+        });
 		
-        $("#data_wydatku, .radio1").change(function(){
+        $("#data_wydatku, .radio1, #kwota").change(function(){
             var radioValue = $("input[name='wydatek']:checked").val();
 			var amountValue = $("input[name='kwota']").val();
 			var dateValue = $("input[name='data_wydatku']").val();
@@ -117,8 +117,8 @@
 											{% endfor %}		
 									</fieldset>
 									<br>								
-										<select class="form-control"name="sposob" id="okres">
-												<option disabled selected value> -- Sposób płatności -- </option>										
+										<select class="form-control"name="sposob" id="okres" required>
+												<option disabled selected value=""> -- Sposób płatności -- </option>										
 											{% for item in pay_meth_assigned %}						
 												<option value="{{ item.0 }}"> {{ item.0 }}</option>
 											{% endfor %}											
