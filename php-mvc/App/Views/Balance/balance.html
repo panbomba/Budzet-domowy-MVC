@@ -124,7 +124,7 @@
 								<b>Wydatki z usuniętych kategorii:</b> {{ deleted_expenses }}<br>
 								{% endif %}											
 
-								<br><b><span style="color: red">Suma Wydatków:</span></b> {{ expenses }}										
+								<br><b><span style="color: tomato">Suma Wydatków:</span></b> {{ expenses }}										
 							</p>
 							
 								<div id="piechart" align="center"></div>
@@ -168,7 +168,7 @@
 								{% elseif balance == 0 %}
 								<p><b>Bilans w wybranym okresie to zero.</b></p>								
 								{% else %}
-								<p><b><span style="color: red">Uważaj, wpadasz w długi!</span></b></p>
+								<p><b><span style="color: tomato">Uważaj, wpadasz w długi!</span></b></p>
 								{% endif %}
 							</p>
 						</div>
