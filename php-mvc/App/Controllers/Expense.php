@@ -28,18 +28,33 @@ class Expense extends \Core\Controller
 	
 	public function ajaxAction()
 	{
-	echo $_POST['radioValue'];	
-	echo '<br>';
-	echo $_POST['amountValue'];	
-	echo '<br>';
-	echo $_POST['dateValue'];	
-	echo '<br>';
-	//tutaj sprawdzenie - jezeli jest limit ustawiony to wysylamy zapytanie
-	//funkcja sprawdz czy limit
-	//wyslij 
-	//ExpenseTransaction::checkIfLimitSetup(); //jezeli tak to go podaj i zrealiuj druga funkcje
-	//ExpenseTransaction::checkMonthlyExpensesForSetCategory($category, $date);
-	}
 
+	$category = $_POST['radioValue'];
+	$selected_amount = (double)$_POST['amountValue'];	
+	$selected_date = date($_POST['dateValue']);	
 	
+	$limit_exists = ExpenseTransaction::checkIfLimitSetup($category); 
+	$category_limit = (double)$limit_exists['SUM(limity)'];
+	
+	if($category_limit !=0)
+		{
+			$suma_wydakow_miesiecznych = ExpenseTransaction::checkMonthlyExpensesForSetCategory($category);
+			$dotychczas_wydane =  (double)$suma_wydakow_miesiecznych['SUM(amount)']; 
+			
+			echo '<b>W obecnym miesiącu wydano '. $dotychczas_wydane .' w kategorii '. $category. '</b>';
+			echo '<br>';
+			if(($dotychczas_wydane + $selected_amount)> $category_limit)
+			{
+				echo '<span style="color:tomato"><b>Uważaj, ten wydatek spowoduje przekroczenie ustalonego limitu o '. ($dotychczas_wydane + $selected_amount - $category_limit). '</b></span>' ;
+			}
+			else if (($dotychczas_wydane + $selected_amount) < $category_limit)
+			{
+				echo'<span style="color:#5cb85c"><b>Możesz pozwolić sobie na ten wydatek bez przekroczenia ustalonego limitu</b></span>';
+			}
+			else if (($dotychczas_wydane + $selected_amount) == $category_limit)
+			{
+				echo '<span style="color:#15B5CA"><b>Dodając ten wydatek osiągniesz miesięczny limit dla kategorii</b></span>';
+			}		
+		}
+	}
 }
