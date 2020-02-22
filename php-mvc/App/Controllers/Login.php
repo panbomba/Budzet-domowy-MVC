@@ -16,17 +16,11 @@ class Login extends \Core\Controller
 	
 	public function createAction()
 	{
-		//$user = User::findByEmail($_POST['email']);
-		//var_dump($user);
-		$user = User::authenticate($_POST['email'], $_POST['password']);
-		
+		$user = User::authenticate($_POST['email'], $_POST['password']);		
 		if ($user)
 		{
 			Auth::login($user);
-			
-			//Flash::addMessage('Udane logowanie.');	
 			View::renderTemplate('Mainmenu/main-menu.html');
-			//$this->redirect(Auth::getReturnToPage());
 		}
 		else
 		{
@@ -36,8 +30,7 @@ class Login extends \Core\Controller
 	}
 	
 	public function destroyAction()
-	{
-		
+	{	
 		$this->redirect('/login/show-logout-message');
 		Auth::logout();
 	}

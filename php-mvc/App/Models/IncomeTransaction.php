@@ -15,11 +15,9 @@ class IncomeTransaction extends \Core\Model
 {	
 	public static function saveDefaultIncomes($id_just_registered_user)
 	{
-		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) SELECT $id_just_registered_user AS user_id, name FROM incomes_category_default";
-		
+		$sql = "INSERT INTO incomes_category_assigned_to_users (user_id, name) SELECT $id_just_registered_user AS user_id, name FROM incomes_category_default";		
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		return $stmt->execute();		
 	}
 	
@@ -37,10 +35,7 @@ class IncomeTransaction extends \Core\Model
 		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		Flash::addMessage('Transakcja dodana pomyślnie.');		
-
-		//tu mozna wstawic informacje o pomyslnym dodaniu transakcji - flash?
-		
+		Flash::addMessage('Transakcja dodana pomyślnie.');				
 		return $stmt->execute();			
 	}
 	
@@ -48,24 +43,20 @@ class IncomeTransaction extends \Core\Model
 	{
 		$user_id = $_SESSION['user_id'];
 		$kategoria_przychodu = $nazwa;
-
 		$sql = "SELECT * FROM incomes_category_assigned_to_users WHERE name='$kategoria_przychodu' AND user_id='$user_id'";
 		$db = static::getDB();
-		$stmt = $db->prepare($sql);
-		
+		$stmt = $db->prepare($sql);		
 		$stmt->execute();		
 		return $stmt->fetch();	
 	}
 	
 	public static function getIncomeCategoriesAssignedToUser()
 	{
-		$user_id = $_SESSION['user_id'];
-		
+		$user_id = $_SESSION['user_id'];		
 		$sql = "SELECT name FROM incomes_category_assigned_to_users WHERE user_id =  '$user_id'";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		$stmt->execute();		
-		
+		$stmt->execute();				
 		return $stmt->fetchAll();
 	}		
 	
@@ -75,8 +66,7 @@ class IncomeTransaction extends \Core\Model
 		$sql = "SELECT * FROM incomes_category_assigned_to_users WHERE user_id = '$user_id' AND lower(name) = lower('$category')";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);		
-		$stmt->execute();		
-		
+		$stmt->execute();				
 		return $stmt->fetchAll();
 	}
 	
@@ -96,16 +86,13 @@ class IncomeTransaction extends \Core\Model
 		else if(!empty($check))
 		{
 			Flash::addMessage('Wybrana kategoria już istnieje!', Flash::WARNING);					
-		}
-	
+		}	
 	}
 
 	public static function changeIncomeCategoryName($oldName, $newName)
 	{
-		$user_id = $_SESSION['user_id'];
-		
-		$sql = "UPDATE incomes_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";
-		
+		$user_id = $_SESSION['user_id'];		
+		$sql = "UPDATE incomes_category_assigned_to_users SET name = '$newName' WHERE name = '$oldName' AND user_id = '$user_id'";		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
 		Flash::addMessage("Zmieniłeś nazwę $oldName na $newName", Flash::SUCCESS);		
@@ -135,5 +122,4 @@ class IncomeTransaction extends \Core\Model
 		Flash::addMessage('Kategoria '.$name. ' została usunięta. ', Flash::SUCCESS);				
 		return $stmt->execute();	
 	}		
-
 }

@@ -15,13 +15,12 @@ class ExpenseTransaction extends \Core\Model
 {
 	public static function saveDefaultExpenses($id_just_registered_user) 
 	{
-		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) SELECT $id_just_registered_user AS user_id, name FROM expenses_category_default";
-		
+		$sql = "INSERT INTO expenses_category_assigned_to_users (user_id, name) SELECT $id_just_registered_user AS user_id, name FROM expenses_category_default";		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-
 		return $stmt->execute();		
 	}	
+	
 	public static function saveNewExpense()
 	{
 		$kwota = (double)$_POST['kwota']; //sprawdzic czy bedzie poprawnie sumowac
@@ -66,8 +65,7 @@ class ExpenseTransaction extends \Core\Model
 	
 	public static function getExpenseCategoriesAssignedToUser()
 	{
-		$user_id = $_SESSION['user_id'];
-		
+		$user_id = $_SESSION['user_id'];		
 		$sql = "SELECT name, limity FROM expenses_category_assigned_to_users WHERE user_id =  '$user_id'";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
@@ -77,8 +75,7 @@ class ExpenseTransaction extends \Core\Model
 
 	public static function getPaymentMethodsAssignedToUser()
 	{
-		$user_id = $_SESSION['user_id'];
-		
+		$user_id = $_SESSION['user_id'];		
 		$sql = "SELECT name FROM payment_methods_assigned_to_users WHERE user_id =  '$user_id'";	
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
@@ -232,14 +229,12 @@ class ExpenseTransaction extends \Core\Model
 		$data_koncowa = date("Y-m-d", strtotime("today"));		
 		
 		$sql = "SELECT name, SUM(amount) FROM expenses AS t2 INNER JOIN expenses_category_assigned_to_users AS t1 ON t2.expense_category_assigned_to_user_id = t1.id AND t2.user_id = '$user_id' AND t2.date_of_expense BETWEEN '$data_poczatkowa' AND '$data_koncowa' WHERE t1.name = '$category'";	
+		
 		$db = static::getDB();
 		$stmt = $db->prepare($sql);
-		$stmt->execute();		
-		
+		$stmt->execute();				
 		return $stmt->fetch();			
-
-	}
-	
+	}	
 }
 
 

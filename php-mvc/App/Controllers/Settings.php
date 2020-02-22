@@ -78,14 +78,11 @@ class Settings extends \Core\Controller
 					User::changePassword($_POST['stare_haslo'], $_POST['nowe_haslo'], $_POST['nowe_haslo2']); //TUTAJ POTWIERDZENIE STAREGO HASLA ORAZ PODWOJNE WPISANIE NOWEGO HASLA
 				}						
 		}
-
-		 //var_dump($_POST);
-
+		
 		$args = [];
 		$args['inc_cat_assigned'] = IncomeTransaction::getIncomeCategoriesAssignedToUser();				
 		$args['exp_cat_assigned'] = ExpenseTransaction::getExpenseCategoriesAssignedToUser();
 		$args['pay_meth_assigned'] = ExpenseTransaction::getPaymentMethodsAssignedToUser();				
 		View::renderTemplate('Settings/settings.html', $args);
-	}
-	
+	}	
 }

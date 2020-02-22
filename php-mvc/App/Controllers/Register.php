@@ -15,7 +15,6 @@ use \App\Models\Payment;
  */
 class Register extends \Core\Controller
 {
-
     /**
      * Show the index page
      *
@@ -28,33 +27,26 @@ class Register extends \Core\Controller
 	
 	public function createAction()
 	{
-		//var_dump($_POST);
 		$user = new User($_POST);
-		//var_dump($user);
 		if($user->save())
 		{
 			$user_array = ($user->findByEmail($user->email));
 			$id_just_registered_user = (int)($user_array->id);
-
 			IncomeTransaction::saveDefaultIncomes($id_just_registered_user);
 			ExpenseTransaction::saveDefaultExpenses($id_just_registered_user);
-			Payment::saveDefaultPayments($id_just_registered_user);
-			
+			Payment::saveDefaultPayments($id_just_registered_user);			
 			$this->redirect('/register/success');
 		}
 		else
 		{
-			//var_dump($user->errors);
 			View::renderTemplate('Register/rejestracja.html', [
 				'user' => $user
-			]);
-				
+			]);				
 		}
 	}	
 	
 	public function successAction()
 	{
 		View::renderTemplate('Register/pierwsze_logowanie.html');
-	}
-	
+	}	
 }

@@ -15,7 +15,7 @@ class Income extends \Core\Controller
 		View::renderTemplate('Income/Income.html', $args);
 	}
 
-	public function createAction() //czy powinienem przekazac id zalogowanego 
+	public function createAction() 
 	{
 		IncomeTransaction::saveNewIncome();
 		$args = [];

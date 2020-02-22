@@ -87,8 +87,7 @@
 						</div>
 						
 			<div>	<br>	
-				<div class="row">			
-					
+				<div class="row">								
 					<div class="col-md-6">
 						<div class = "tile1">
 
@@ -127,34 +126,28 @@
 								<br><b><span style="color: tomato">Suma Wydatków:</span></b> {{ expenses }}										
 							</p>
 							
-								<div id="piechart" align="center"></div>
-																						
+								<div id="piechart" align="center"></div>																						
 									<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 									<script type="text/javascript">
 									  google.charts.load('current', {'packages':['corechart']});
 									  google.charts.setOnLoadCallback(drawChart);
 									  function drawChart() {
-
 										var data = google.visualization.arrayToDataTable([
 											['Name', 'Value'],
 										  {% for item in expenses_categories %}
 												['{{ item.name }}', {{ item['SUM(amount)'] }}],
 											{% endfor %}
 										]);
-
 										var options = {
 										  title: 'Your expenses:'
 										};
-
 										var options = {'title':'', 'width':300, 'height':250, 'backgroundColor':'#dddddd', is3D: true,};
 										if(data.getNumberOfRows() != 0){
 										var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
 										chart.draw(data, options);
 										}
 									  }
-									</script>
-							
+									</script>						
 						</div>
 					</div>
 						

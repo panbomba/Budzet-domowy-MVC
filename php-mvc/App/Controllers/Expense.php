@@ -21,8 +21,7 @@ class Expense extends \Core\Controller
 		ExpenseTransaction::saveNewExpense();
 		$args = [];
 		$args['exp_cat_assigned'] = ExpenseTransaction::getExpenseCategoriesAssignedToUser();
-		$args['pay_meth_assigned'] = ExpenseTransaction::getPaymentMethodsAssignedToUser();
-		
+		$args['pay_meth_assigned'] = ExpenseTransaction::getPaymentMethodsAssignedToUser();		
 		View::renderTemplate('Expense/expense.html', $args);		
 	}
 	
@@ -31,8 +30,7 @@ class Expense extends \Core\Controller
 
 	$category = $_POST['radioValue'];
 	$selected_amount = (double)$_POST['amountValue'];	
-	$selected_date = date($_POST['dateValue']);	
-	
+	$selected_date = date($_POST['dateValue']);		
 	$limit_exists = ExpenseTransaction::checkIfLimitSetup($category); 
 	$category_limit = (double)$limit_exists['SUM(limity)'];
 	
