@@ -36,14 +36,14 @@ class Expense extends \Core\Controller
 	
 	if($category_limit !=0)
 		{
-			$suma_wydakow_miesiecznych = ExpenseTransaction::checkMonthlyExpensesForSetCategory($category);
+			$suma_wydakow_miesiecznych = ExpenseTransaction::checkMonthlyExpensesForSetCategory($category, $selected_date); //TUTAJ DODAC OBSLUGE DATY
 			$dotychczas_wydane =  (double)$suma_wydakow_miesiecznych['SUM(amount)']; 
 			
-			echo '<b>W obecnym miesiącu wydano '. $dotychczas_wydane .' w kategorii '. $category. '</b>';
+			echo '<b>W wybranym miesiącu wydano '. $dotychczas_wydane .' w kategorii '. $category. '</b>';
 			echo '<br>';
 			if(($dotychczas_wydane + $selected_amount)> $category_limit)
 			{
-				echo '<span style="color:tomato"><b>Uważaj, ten wydatek spowoduje przekroczenie ustalonego limitu o '.round(($dotychczas_wydane + $selected_amount - $category_limit),2). '</b></span>' ;
+				echo '<span style="color:tomato"><b>Uważaj, ten wydatek spowoduje przekroczenie miesięcznego limitu o '.round(($dotychczas_wydane + $selected_amount - $category_limit),2). '</b></span>' ;
 			}
 			else if (($dotychczas_wydane + $selected_amount) < $category_limit)
 			{

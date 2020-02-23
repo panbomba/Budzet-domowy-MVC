@@ -222,11 +222,11 @@ class ExpenseTransaction extends \Core\Model
 		return $stmt->fetch();				
 	}	
 	
-	public static function checkMonthlyExpensesForSetCategory($category)
+	public static function checkMonthlyExpensesForSetCategory($category, $date)
 	{
 		$user_id = $_SESSION['user_id'];
-		$data_poczatkowa = date("Y-m-d", strtotime("first day of this month"));
-		$data_koncowa = date("Y-m-d", strtotime("today"));		
+		$data_poczatkowa = date("Y-m-01", strtotime($date));
+		$data_koncowa = date("Y-m-t", strtotime($date));		
 		
 		$sql = "SELECT name, SUM(amount) FROM expenses AS t2 INNER JOIN expenses_category_assigned_to_users AS t1 ON t2.expense_category_assigned_to_user_id = t1.id AND t2.user_id = '$user_id' AND t2.date_of_expense BETWEEN '$data_poczatkowa' AND '$data_koncowa' WHERE t1.name = '$category'";	
 		
