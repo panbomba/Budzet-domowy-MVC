@@ -10,7 +10,7 @@ use \App\Models\IncomeTransaction;
 use \App\Auth;
 use \App\Flash;
 
-class Settings extends \Core\Controller
+class Settings extends Authenticated
 {
 	public function newAction()
 	{

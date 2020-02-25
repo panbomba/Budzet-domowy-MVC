@@ -6,7 +6,7 @@ use \Core\View;
 use \App\Models\User;
 use \App\Models\IncomeTransaction;
 
-class Income extends \Core\Controller
+class Income extends Authenticated
 {
 	public function newAction()
 	{

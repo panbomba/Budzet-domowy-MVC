@@ -20,7 +20,9 @@ class Login extends \Core\Controller
 		if ($user)
 		{
 			Auth::login($user);
-			View::renderTemplate('Mainmenu/main-menu.html');
+			$this->redirect(Auth::getReturnToPage());
+			
+			//View::renderTemplate('Mainmenu/main-menu.html');
 		}
 		else
 		{

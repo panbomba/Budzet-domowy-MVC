@@ -61,9 +61,10 @@ abstract class Controller
      *
      * @return void
      */
-    protected function before()
-    {
-    }
+	protected function before()
+	{
+		;
+	}	
 
     /**
      * After filter - called after an action method.

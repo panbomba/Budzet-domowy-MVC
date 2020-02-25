@@ -7,7 +7,7 @@ use \App\Models\User;
 use \App\Auth;
 use \App\Flash;
 
-class Mainmenu extends \Core\Controller
+class Mainmenu extends Authenticated
 {
 	public function newAction()
 	{

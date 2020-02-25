@@ -8,7 +8,7 @@ use \App\Models\ExpenseTransaction;
 use \App\Models\IncomeTransaction;
 use \App\Models\BalanceModel;
 
-class Balance extends \Core\Controller
+class Balance extends Authenticated
 {
 		public function newAction()
 	{	

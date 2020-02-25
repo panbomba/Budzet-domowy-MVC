@@ -13,7 +13,7 @@ use \App\Models\Payment;
  *
  * PHP version 7.0
  */
-class Register extends \Core\Controller
+class Register extends Authenticated
 {
     /**
      * Show the index page
