@@ -33,8 +33,9 @@ class Login extends \Core\Controller
 	
 	public function destroyAction()
 	{	
-		$this->redirect('/login/show-logout-message');
 		Auth::logout();
+		$this->redirect('/login/show-logout-message');
+		
 	}
 	
 	public function showLogoutMessageAction()
